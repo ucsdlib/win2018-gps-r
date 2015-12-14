@@ -17,6 +17,16 @@ swc_twitter     : "http://twitter.com/swcarpentry"
 swc_vm          : "https://docs.google.com/uc?id=0B4Kr6DYkzkQtSTZLQzF4aVB4NDQ&export=download"
 swc_pre_survey  : "https://www.surveymonkey.com/r/swc_pre_workshop_v1?workshop_id="
 swc_post_survey : "https://www.surveymonkey.com/r/swc_post_workshop_v1?workshop_id="
+
+#--------------------------------------------------------------------------------
+# UCSD Library Workshop settings - including Department partners
+#--------------------------------------------------------------------------------
+lib_site        : "http://libraries.ucsd.edu"
+lib_rdcp        : "http://libraries.ucsd.edu/rdcp"
+lib_data_svcs   : "http://ucsd.libguides.com/data-services"
+gps_site        : "http://gps.ucsd.edu"
+lib_contact     : "timdennis@ucsd.edu"
+
 #--------------------------------------------------------------------------------
 # Settings for Jekyll - should not need to be modified.
 #--------------------------------------------------------------------------------

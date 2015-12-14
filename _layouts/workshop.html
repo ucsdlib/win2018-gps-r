@@ -30,7 +30,7 @@
     {% include github-ribbon.html %}
 
     <div class="container card">
-      {% include banner.html %}
+      <!--{% include banner.html %} -->
       <div class="jumbotron">
         <div class="row">
           <div class="col-md-10 col-md-offset-1">
@@ -38,7 +38,8 @@
             <div class="row">
               <div class="col-md-6">
                 <p>{{page.humandate}}</p>
-                <p>{% if page.humantime %}{{page.humantime}}{% endif %}</p>
+                <p>{% if page.humantime %}{{page.days}}:{{page.humantime}}{% endif %}</p>
+                <P></p>
               </div>
               <div class="col-md-6">
                 <p>
