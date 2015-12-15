@@ -2,7 +2,7 @@
 layout: workshop
 root: .
 venue: "Intro to R - School of Global Policy and Strategy"      # brief name of host site without address (e.g., "Euphoric State University")
-address: "9500 Gilman Drive, #0519, La Jolla, CA"    # street address of workshop (e.g., "123 Forth Street, Blimingen, Euphoria")
+address: "Room 3202, 9500 Gilman Drive, #0519, La Jolla, CA"    # street address of workshop (e.g., "123 Forth Street, Blimingen, Euphoria")
 country: "us"    # country (lowercase two-letter ISO code such as "fr" - see https://en.wikipedia.org/wiki/ISO_3166-1)
 language: "en"   # language (lowercase two-letter ISO code such as "fr" - see https://en.wikipedia.org/wiki/ISO_639-1)
 latlng: "32.885125,-117.241173"     # fractional latitude and longitude (e.g., "41.7901128,-87.6007318"; you can use http://www.latlong.net/)
@@ -118,6 +118,23 @@ eventbrite:       # optional (insert the alphanumeric key for Eventbrite registr
   for more information.
 </p>
 
+<p id="certificate">
+<strong>Assessment</strong>:
+A certificate of proficiency will be given to students who: 
+</p>
+
+<ul>
+<li>Attend all classes</li>
+<li>Passes all in-course quizzes</li>
+<li>Satisfactorily completes the weekly assignments</li>
+</ul>
+
+<p id="help">
+{% if site.lib_appt %}
+  <strong>Need help?</strong>:  Email <a href='mailto:{{page.contact}}'>{{page.contact}}</a> or 
+  <a href="{{site.lib_appt}}">schedule an appointment</a>
+{% endif %}
+</p>
 <hr/>
 <!--
   SCHEDULE

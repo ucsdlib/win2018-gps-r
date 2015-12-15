@@ -1,8 +1,5 @@
 Lessons are adapted from the Software Carpentry Lesson R for Reproducible Scientific Analysis <http://swcarpentry.github.io/r-novice-gapminder/>.
 
-GitHub source for R Course:  
-Instructors guide: 
-
 1. Jan.4 - Setup & Intro (Tim)
   - Intro to course - syllabus - weekly assignments 
   - Intro to R & RStudio
@@ -19,9 +16,9 @@ Instructors guide:
   - Vectorization
   - Control flow
   - Supplemental lesson - Writing data
-5. Jan. 18 - Data preparation & cleaning (tim)
+5. Jan. 20 (WED) - Data preparation & cleaning (Tim)
   - Data frame manipulation: Dplyr
   - Split-apply-combine: plyr
-6. Jan. 20 - Data cleaning (Hyeonsu)
+6. Jan. 22 (FRI) - Data cleaning (Hyeonsu)
   - Data frame manipulation: Tidyr
   - Wrap-up
