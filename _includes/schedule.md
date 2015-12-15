@@ -1,4 +1,4 @@
-Lessons are adapted from the Software Carpentry Lesson R for Reproducible Scientific Analysis <http://swcarpentry.github.io/r-novice-gapminder/>. NOTE: Because Monday (Jan 18th) falls on MLK day, we will meet on Wed.(Jan 20th) and Fri.(Jan 22) instead that week. 
+NOTE: Because Monday (Jan 18th) falls on MLK day, we will meet on Wed.(Jan 20th) and Fri.(Jan 22) instead that week. 
 
 1. Jan.4 - Setup & Intro (Tim)
   - Intro to course - syllabus - weekly assignments 
