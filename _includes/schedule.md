@@ -1,24 +1,26 @@
 NOTE: Because Monday (Jan 18th) falls on MLK day, we will meet on Wed.(Jan 20th) and Fri.(Jan 22) instead that week. 
 
-1. Jan.4 - Setup & Intro (Tim)
-  - Intro to course - syllabus - weekly assignments 
-  - Intro to R & RStudio
-  - Data structures: vectors, matricies, factors, lists
-  - Supplemental lesson - R project Management
-2. Jan. 6  - Data structures/subsetting (Hyeonsu)
-  - Data structures (continued): data frames & reading data
-  - Subsetting
-3. Jan. 11 - Functions & Plotting (Tim)
-  - Creating functions
-  - Plotting with GGPLOT2(1)
-4. Jan. 13 - Plotting, control flow & writing data (Hyeonsu)
-  - Plotting with GGPLOT2(2)
-  - Vectorization
-  - Control flow
-  - Supplemental lesson - Writing data
-5. Jan. 20 (WED) - Data preparation & cleaning (Tim)
-  - Data frame manipulation: Dplyr
-  - Split-apply-combine: plyr
-6. Jan. 22 (FRI) - Data cleaning (Hyeonsu)
-  - Data frame manipulation: Tidyr
-  - Wrap-up
++-----------+---------------------------------+-----------------------------------------------------------+
+| Date      | Class                           | Topics                                                    |
++===========+=================================+===========================================================+
+| Jan. 4    | Setup & Intro (Tim)             | - Intro to course                                         | 
+|           |                                 | - Intro to R & RStudio                                    |
+|           |                                 | - Data structures: vectors, matricies, factors            |
+|           |                                 |                                                           |
++-----------+---------------------------------+-----------------------------------------------------------+
+| Jan. 6    | Data Structures (Hyeonsu)       | - Data structures (continued): data frames & reading data |
+|           |                                 | - Subsetting                                              |
++-----------+---------------------------------+-----------------------------------------------------------+
+| Jan. 11   | Functions & Plotting (tim)      | - Creating functions                                      |
+|           |                                 | - Plotting with GGPLOT2(1)                                |
++-----------+---------------------------------+-----------------------------------------------------------+
+| Jan. 13   | Plotting & control flow (Hye)   | - Plotting with GGPLOT2(2)                                |
+|           |                                 | - Vectorization                                           |
+|           |                                 | - Writing data                                            | 
++-----------+---------------------------------+-----------------------------------------------------------+
+| Jan. 20   | Data preparation & cleaning(Tim)| - Data frame manipulation: dplyr                          |
+|           |                                 | - Split-apply-combine pattern: plyr                       | 
++-----------+---------------------------------+-----------------------------------------------------------+
+| Jan. 22   | Data cleaning (Hyeonsu)         | - Data frame manipulation: tidyr                          |
+|           |                                 | - Wrap-up                                                 |
++-----------+---------------------------------+-----------------------------------------------------------+
