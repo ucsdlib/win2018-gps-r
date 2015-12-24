@@ -3,24 +3,24 @@ NOTE: Because Monday (Jan 18th) falls on MLK day, we will meet on Wed.(Jan 20th)
 +-----------+---------------------------------+-----------------------------------------------------------+
 | Date      | Class                           | Topics                                                    |
 +===========+=================================+===========================================================+
-| Jan. 4    | Setup & Intro (Tim)             | - Intro to course                                         | 
+| Jan. 4    | Setup, Intro, & Data Structures | - Intro to course                                         | 
 |           |                                 | - Intro to R & RStudio                                    |
 |           |                                 | - Data structures: vectors, matricies, factors            |
-|           |                                 |                                                           |
+|           |                                 | - Data frames & reading data                              |           |           |                                 | - Subsetting R objects                                    |
 +-----------+---------------------------------+-----------------------------------------------------------+
-| Jan. 6    | Data Structures (Hyeonsu)       | - Data structures (continued): data frames & reading data |
-|           |                                 | - Subsetting                                              |
+| Jan. 6    | Lab: R basics, data structures  | - Challenges                                              |
+|           |      & subsetting               | - Assignment                                              |
 +-----------+---------------------------------+-----------------------------------------------------------+
-| Jan. 11   | Functions & Plotting (tim)      | - Creating functions                                      |
-|           |                                 | - Plotting with GGPLOT2(1)                                |
+| Jan. 11   | Functions & Plotting            | - Creating functions                                      |
+|           |                                 | - Plotting with GGPLOT2                                   |
+|           |                                 | - Vectorization & writing data                            | 
 +-----------+---------------------------------+-----------------------------------------------------------+
-| Jan. 13   | Plotting & control flow (Hye)   | - Plotting with GGPLOT2(2)                                |
-|           |                                 | - Vectorization                                           |
-|           |                                 | - Writing data                                            | 
+| Jan. 13   | Lab: Functions & GGPLOT2        | - Challenges & assignments                                |
 +-----------+---------------------------------+-----------------------------------------------------------+
-| Jan. 20   | Data preparation & cleaning(Tim)| - Data frame manipulation: dplyr                          |
+| Jan. 20   | Data preparation & cleaning     | - Data frame manipulation: dplyr                          |
 |           |                                 | - Split-apply-combine pattern: plyr                       | 
+|           |                                 | - Data frame mainpulation:  tidyr                         | 
 +-----------+---------------------------------+-----------------------------------------------------------+
-| Jan. 22   | Data cleaning (Hyeonsu)         | - Data frame manipulation: tidyr                          |
-|           |                                 | - Wrap-up                                                 |
+| Jan. 22   | Lab: Data prep & cleaning       | - Wrap-up                                                 |
+|           |                                 | - Challenges & assignment                                 |
 +-----------+---------------------------------+-----------------------------------------------------------+
