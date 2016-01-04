@@ -13,9 +13,9 @@ NOTE: Because Monday (Jan 18th) falls on MLK day, we will meet on Wed.(Jan 20th)
 +-----------+---------------------------------+-----------------------------------------------------------+
 | Jan. 11   | Functions & Plotting            | - Creating functions                                      |
 |           |                                 | - Plotting with GGPLOT2                                   |
-|           |                                 | - Vectorization & writing data                            | 
+|           |                                 | - Vectorization & writing data (time permitting)          | 
 +-----------+---------------------------------+-----------------------------------------------------------+
-| Jan. 13   | Lab: Functions & GGPLOT2        | - Challenges & assignments                                |
+| Jan. 13   | Lab: Functions & GGPLOT2        | - Challenges & assignment                                 |
 +-----------+---------------------------------+-----------------------------------------------------------+
 | Jan. 20   | Data preparation & cleaning     | - Data frame manipulation: dplyr                          |
 |           |                                 | - Split-apply-combine pattern: plyr                       | 
