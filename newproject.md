@@ -35,6 +35,6 @@ We need a data folder inside our project.
 
 Run `download.file('https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv', 'data/gapminder-FiveYearData.csv')` from console
 
-
+[![Download data](assets/create-data-new-folder-small.png "Create data folder")](assets/create-data-folder-big.png)
 
 
