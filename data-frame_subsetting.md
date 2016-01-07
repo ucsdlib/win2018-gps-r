@@ -1,0 +1,356 @@
+
+#### Data frames & reading in data (20xm)
+Become familiar with data frames & able to read data into R.
+
+* similar to matricies but each column can be different atomic type
+* tabular data spreadsheets -rectangular 
+* data frames are lists under the hood
+* can be crated manually
+```
+    df <- data.frame(id = c('a', 'b', 'c', 'd', 'e', 'f'), x = 1:6, y = c(214:219))
+df
+length(df) #tells you the number of columns not rows
+nrow(df) #gives you num rows
+```
+
+* add column to data frame with cbind()
+```
+df <- cbind(df, 6:1)
+df
+```
+* note R gives names to the column, we can change this using `names()`
+* `names(df)[4] <- 'SixToOne'`
+* we can do this when adding a column
+```
+df <- cbind(df, caps=LETTERS[1:6])
+df
+```
+* note: LETTERS and letters are built-in constants
+
+* add a row using rbind 
+* ` <- rbind(df, list("g", 11, 42, 0, "G"))df`
+* we add as a list b/c we have multiple types across columns
+* what is this telling us? 
+* trying to append 'g' and 'G' as factor levels, why?
+* `class(df)` - `str(df)` 
+* when we used the data.frame() function R automatically made the 1st & last col into factor & there are no levels for 'g' and "G", so adding fails
+* `df` - row was added but those two are NAs
+* workarounds: 
+	- convert the factor columns into characters - but we lose the factors
+	- add factor levels to accommodate the new additions. if we want to preserve factors this is what we should do
+```
+# convert col #1 to character
+df$id <- as.character(df$id)  # convert to character
+class(df$id)
+```
+
+```
+levels(df$caps) <- c(levels(df$caps), 'G') # add a factor level
+class(df$caps)
+```
+
+* let's add the row again
+```
+df <- rbind(df, list("g", 11, 42, 0, 'G'))
+tail(df, n=3)
+```
+
+* we should delete teh row with the NAs
+* multiple ways to delete rows
+```
+df[-7, ]  # The minus sign tells R to delete the row
+df[complete.cases(df), ]  # Return `TRUE` when no missing values
+na.omit(df)  # Another function for the same purpose
+df <- na.omit(df) # overwrite to save
+
+```
+
+* combinding data frames
+* row-bind data.frames together
+* `rbind(df,df) #r is making sure rownames are unique`
+* restor sequential numbering by setting rownames to NULL
+```
+df2 <- rbind(df, df)
+rownames(df2) <- NULL
+df2
+```
+
+*  READing in data - we have data in a 'data/' folder, let's look at it in a text editor `sublime gap` 
+
+```
+#using read.table(), sep ','
+gapminder <- read.table(
+  file="data/gapminder-FiveYearData.csv",
+  header=TRUE, sep=","
+)
+head(gapminder)
+```
+
+```
+# Here is the read.csv version of the above command
+gapminder <- read.csv(
+  file="data/gapminder-FiveYearData.csv"
+)
+head(gapminder)
+
+```
+* another type of file tab-separated format, use sep="\t" for these
+* you can also read in files from the web by using url 
+* for excel use package like xlsx 
+* Make reproducible, let's create a R script File > new file > R script  - show how to run using source (mention you will save all commands to dropbox)
+
+**Using gapminder data**
+
+* remember functions for inspecting data structures.
+```
+class() # what is the data structure?
+typeof() # what is its atomic type?
+length() # how long is it? What about two dimensional objects?
+attributes() # does it have any metadata?
+str() # A full summary of the entire object
+dim() # Dimensions of the object - also try nrow(), ncol()
+```
+
+```
+#apply to gapminder
+typeof(gapminder) #data frames are lists
+class(gapminder) #class of df
+head(gapminder)
+typeof(gapminder$year) #looking to see what type year is
+#Can anyone guess what we should expect the type of the continent column to be?
+typeof(gapminder$continent) #integer why?
+class(gapminder$continent) #factors are stored as integers
+
+```
+
+* default behavior of R to treat text columns as factors when reading in
+* this is b/c text columns often represent categorical data, which need to be factors for statistical modeling 
+* not obvious can be confusing
+* we can disable behavior
+
+```
+options(stringsAsFactors=FALSE)
+gapminder <- read.table(
+  file="data/gapminder-FiveYearData.csv", header=TRUE, sep=","
+)
+```
+
+* remember that you'll need to convert to factors when needed
+* can be good b/c it forces you to think about the questions you are asking and maybe easier to order categories
+* `str(gapminder)`
+* read str
+* we can modify column/row names
+* `colnames(gapminder)`
+
+```
+copy <- gapminder
+colnames(copy) <- letters[1:6]
+head(copy, n=3)
+
+```
+
+* rownames: `rownames(gapminder)[1:20]`
+* sequential row nums
+* attributes will give row and col names
+* dimnames will give just rownames
+* `str(dimnames(gapminder))`
+
+**understanding lists in functional outputs**
+* run a basic linear regression with gapminder
+
+```
+# What is the relationship between life expectancy and year?
+reg <- lm(lifeExp ~ year, data=gapminder)
+```
+
+* lm estimates linear statistical models
+* `a~b` meaning a, the dependent (or response) var, is a function of b, the independent variable.
+* we tell lm to use gapminder so it knows where lifeExp and year are
+* output `reg` - not too much
+* `str(reg)` - there's a great deal stored in nested lists
+* `summary(reg)` - we can look at summary - life expectancy has slowly been increasing over time, sig positive association
+
+#### Subsetting data (25m)
+To be able to subset vectors, factors, matrices, lists, and data frames
+
+* six different ways we can subset any kind of object
+* 3 diff subsetting operators
+* start with an atomic vector
+
+```
+x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
+names(x) <- c('a', 'b', 'c', 'd', 'e')
+x
+```
+
+**Accessing elements by indicies**
+* extract element by index
+* [] means give me the xth element
+* `x[1]`
+* `x[4]`
+* we can ask for multiple elements
+* `x[c(1,3)]`
+* or slices of a vector `x[1:4]`
+   * x[1:4] is equivalent to x[c(1,2,3,4)].
+* we can ask for repeating elements `x[c(1,1,3)]`
+* if we ask for element out of scope we get NA `x[6]`
+* `x[0]` get us a empty vector
+
+**Skipping and removing elements** 
+
+* using negative number will return every element except for that one
+* `x[-2]` 
+* skip multiple elements `x[c(-1,-5)] # or x[-c(1,5)]`
+* `x[-1:3]` creates an error b/c its reading as c(-1,0,1,2,3)
+    - needs to use parentheses so order is right 
+    - `x[-(1:3)]`
+* to remove elements from a vector we need to assign the result back over the var
+```
+x <- x[-4]
+x
+```
+**Subsetting by name**
+
+* extract elements by using their name
+* `x[c("a","c")]` 
+    - usuall more reliable way to subset objects, index changes more than names
+    - unfort can't skip or remove as easily
+* `x[-which(names(x)=="a")]` # which function returns all true elements of its argument, which is negated 
+* let's step thru
+    - `names(x) == "a"` # the condition applied to vector x, only a true
+    - `which(names(x)=="a")` # which converts this to a index
+* skipping multiple named indicies uses %in%
+    - `x[-which(names(x) %in% c("a", "c"))]`
+    - So why can’t we use == like before? 
+
+TODO - make sense of below:
+
+```
+names(x) == c('a', 'c') #warnings 
+#== works slightly differently than %in%. It will compare each element of its left argument to the corresponding element of its right argument.
+
+c("a", "b", "c", "e")  # names of x
+   |    |    |    |    # The elements == is comparing
+c("a", "c")
+
+c("a", "b", "c", "e")  # names of x
+   |    |    |    |    # The elements == is comparing
+c("a", "c", "a", "c")
+```
+
+*  Non-unique names possible for multiple elements in a vector to have the same name
+
+```
+x <- 1:3
+x
+names(x) <- c('a', 'a', 'a')  
+x
+x['a']  # only returns first value
+x[which(names(x) == 'a')]  # returns all three values
+```
+
+* Getting help for operators; 
+    - `help("%in%")` or `?"%in%"`
+
+**Subsetting through other logical operators**
+
+TODO: more work on this,
+* we can subset through logical operations
+* `x[c(TRUE, TRUE, FALSE, FALSE)]`
+* Note that in this case, the logical vector is also recycled to the length of the vector we’re subsetting!
+* `x[c(TRUE, FALSE)]`
+* Since comparison operators evaluate to logical vectors, we can also use them to succinctly subset vectors:
+    - `x[x > 7]`
+
+There are many situations in which you will wish to combine multiple conditions. To do so several logical operations exist in R:
+
+| logical OR: returns TRUE, if either the left or right are TRUE.
+& logical AND: returns TRUE if both the left and right are TRUE
+! logical NOT: converts TRUE to FALSE and FALSE to TRUE
+&& and || compare the individual elements of two vectors. Recycling rules also apply here.
+
+**Handling special values**
+At some point you will encounter functions in R which cannot handle missing, infinite, or undefined data.
+
+special functions to deal with this: 
+
+* is.na will return all positions in a vector, matrix, or data.frame containing NA.
+* likewise, is.nan, and is.infinite will do the same for NaN and Inf. 
+* is.finite will return all positions in a vector, matrix, or data.frame that do not contain NA, NaN or Inf.
+* na.omit will filter out all missing values from a vector
+
+**factor subsetting**
+Factor subsetting works the same way as vector subsetting.
+
+```
+f <- factor(c("a", "a", "b", "c", "c", "d"))
+f[f == "a"]
+f[f %in% c("b", "c")]
+f[1:3]
+
+```
+* An important note is that skipping elements will not remove the level even if no more of that category exists in the factor:
+    - f[-3]
+
+**Matrix subsetting**
+Matrices are also subsetted using the [ function. In this case it takes two arguments: the first applying to the rows, the second to its columns:
+
+```
+set.seed(1)
+m <- matrix(rnorm(6*4), ncol=4, nrow=6)
+m[3:4, c(3,1)]
+```
+* You can leave the first or second arguments blank to retrieve all the rows or columns respectively:
+```
+m[, c(3,4)] #column
+m[3,] #if grabbing 1 row, R will convert to vector
+m[3, , drop=FALSE] # keep as a matrix specify a third argument; drop = FALSE:
+m[, c(3,6)] #will throw error if out of range
+```
+
+* because matricies are really vectors, you can just use single indexing
+    - m[5] #not very useful
+* matricies are populated by column-major format by default, elements are arraged column wise
+```
+matrix(1:6, nrow=2, ncol=3)
+matrix(1:6, nrow=2, ncol=3, byrow=TRUE) #populate by row use  byrow=TRUE
+
+```
+**list subsetting**
+
+Three functions to subset lists [, [[, $
+
+* Using [ will always return a list. If you want to subset a list, but not extract an element, then you will likely use [.
+
+```
+xlist <- list(a = "Software Carpentry", b = 1:10, data = head(iris))
+xlist[1]
+```
+
+* we can subset elements teh same way as atomic vector
+* xlist[1:2]
+* to get at individual elements of a list you need to use [[
+    - `xlist[[1]]`
+    - but you cant extract more than one element at once `xlist[[1:2]]`
+    - nor skip elements `xlist[[-1]]`
+    - but you can use names to subset and extract `xlist[['a']]`
+    - $ function extracts by name xlist$data
+**Data frame**
+Data frames are lists under the hood, so similar methods apply.
+[ will act the same way as for lists, where each list is a column
+```
+head(gapminder[3])
+head(gapminder[["lifeExp"]]) # [[ will act to extract a single column
+head(gapminder$year) #$ provides shorthand to extract columns by name
+#With two arguments, [ behaves the same way as for matrices:
+gapminder[1:3,]
+gapminder[3,] #is a data frame b/c of the mixed types
+```
+finsished
+
+
+
+####END day
+* remove R history from dropbox (remind students to save first if they want it)
+* give students links to complete R lessons (and intermediate lessons)
+* sticky note feedback
