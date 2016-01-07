@@ -80,7 +80,8 @@ img {
 </ul></li>
 <li>put history in accessible place for students (DROPBOX)</li>
 </ul>
-<p><strong>Intro to Software Carpentry:</strong> <a href="http://swcarpentry.github.io/slideshows/introducing-software-carpentry/index.html#slide-0" class="uri">http://swcarpentry.github.io/slideshows/introducing-software-carpentry/index.html#slide-0</a></p>
+<p><strong>Intro to Software Carpentry:</strong></p>
+<p><a href="http://swcarpentry.github.io/slideshows/introducing-software-carpentry/index.html#slide-0" class="uri">http://swcarpentry.github.io/slideshows/introducing-software-carpentry/index.html#slide-0</a></p>
 </div>
 <div id="checklist-for-class" class="section level4">
 <h4>Checklist for class:</h4>
@@ -138,20 +139,40 @@ img {
 <li>much time spent in console working out code</li>
 <li>console <code>&gt;</code> with blinking cursor, much like command line</li>
 <li>“read, evaluate, print, loop” REPL - many languages adopt this paradigm (stata)</li>
+</ul></li>
 </ul>
-<pre><code>   1 + 100
-   1 + </code></pre></li>
+<pre class="r"><code>1 + 100
+1 + </code></pre>
+<ul>
 <li>if you hit return and R shows a “+” instead of &gt;, waiting for you to comlete command, ESC or control+c will escape</li>
 </ul>
 <p>#R uses same order of opterations to lowest precedence: 1. Parentheses: ( ) 2. Exponents: ^ or ** 3. Divide: / 4. Multiply: * 5. Add: + 6. Subtract: -</p>
 <p><code>3+5*2</code> v. <code>(3+5) * 2</code></p>
 <ul>
-<li><p>this can be hard to read (3 + (5 * (2 ^ 2))) # hard to read 3 + 5 * 2 ^ 2 # clear, if you remember the rules 3 + 5 * (2 ^ 2) # if you forget some rules, this might help</p></li>
+<li>this can be hard to read</li>
+</ul>
+<pre class="r"><code>(3 + (5 * (2 ^ 2))) # hard to read
+3 + 5 * 2 ^ 2       # clear, if you remember the rules
+3 + 5 * (2 ^ 2)     # if you forget some rules, this might help</code></pre>
+<ul>
 <li>really small or large numbers get scientific notation</li>
 <li><code>2/1000</code> #2e-04 shorthand for 10^XX So 2e-4 is shorthand for 2 * 10^(-4).</li>
-<li><p><code>5e3 #note lack of minus</code></p></li>
+<li><code>5e3 #note lack of minus</code></li>
 </ul>
-<p><strong>Math functions - many built in functions</strong> * <code>sin(1)</code> #trig functions * <code>log(1)</code> # natural log * <code>log10(10)</code> #base-10 log * <code>exp(0.5)</code> #e^(1/2) * Dont worry about remembering functions, use google * use RSTudio’s autocompletion feature if you can remember beginning of function * Typing ? before function brings up help page in Rstudio</p>
+<p><strong>Math functions - many built in functions</strong></p>
+<pre class="r"><code>sin(1) #trig functions</code></pre>
+<pre><code>## [1] 0.841471</code></pre>
+<pre class="r"><code>log(1) # natural log</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>log10(10) #base-10 log</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>exp(0.5) #e^(1/2)</code></pre>
+<pre><code>## [1] 1.648721</code></pre>
+<ul>
+<li>Dont worry about remembering functions, use google</li>
+<li>use RSTudio’s autocompletion feature if you can remember beginning of function</li>
+<li>Typing ? before function brings up help page in Rstudio</li>
+</ul>
 <p><strong>Comparing things</strong></p>
 <pre class="r"><code>1 == 1 # equality (note two equals signs, read as &quot;is equal to&quot;)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
@@ -178,29 +199,42 @@ img {
 <li><code>0.1+0.05==0.15</code></li>
 <li><code>all.equal(0.1+0.05, 0.15)</code></li>
 </ul>
-<p><strong>Variable &amp; assignments</strong> * Store values in vars using assignment operator &lt;-, like <code>x &lt;- 1/40</code> * Look in Environment tab in Rstudio * our var can be used in place of a number in calculations <code>log(x)</code> * Variables can be reassigned <code>x&lt;-100</code> * Assignement values can contain variable being assigned to * <code>x &lt;- x + 1 #notice how RStudio updates its description of x on the top right tab</code> * right hand side can be any valid R expression &amp; is evaluated prior assigment * Variable names can contain letters, numbers, underscores and periods. * They cannot start with a number nor contain spaces at all. * Can use = for assignment but less common among R users</p>
-<p><strong>Vectorization</strong> * R is vectorized, meaning that variables and functions can have vectors as values</p>
-<pre><code>1:5
-2^(1:5)
-x &lt;- 1:5
-2^x</code></pre>
+<p><strong>Variable &amp; assignments</strong></p>
 <ul>
-<li>more to come on this</li>
+<li>Store values in vars using assignment operator &lt;-, like <code>x &lt;- 1/40</code></li>
+<li>Look in Environment tab in Rstudio</li>
+<li>our var can be used in place of a number in calculations <code>log(x)</code></li>
+<li>Variables can be reassigned <code>x&lt;-100</code></li>
+<li>Assignement values can contain variable being assigned to</li>
+<li><code>x &lt;- x + 1 #notice how RStudio updates its description of x on the top right tab</code></li>
+<li>right hand side can be any valid R expression &amp; is evaluated prior assigment</li>
+<li>Variable names can contain letters, numbers, underscores and periods.</li>
+<li>They cannot start with a number nor contain spaces at all.</li>
+<li>Can use = for assignment but less common among R users</li>
 </ul>
+<p><strong>Vectorization</strong></p>
+<ul>
+<li>R is vectorized, meaning that variables and functions can have vectors as values</li>
+</ul>
+<pre class="r"><code>1:5</code></pre>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<pre class="r"><code>2^(1:5)</code></pre>
+<pre><code>## [1]  2  4  8 16 32</code></pre>
+<pre class="r"><code>x &lt;- 1:5
+2^x</code></pre>
+<pre><code>## [1]  2  4  8 16 32</code></pre>
 <p><strong>Managing your enviorment</strong> * usefule commands for working with R session * <code>ls()</code> shows R ojects * <code>ls</code> plain will print out code for that function (or any R function) * Remove objects use <code>rm(x)</code> * If you have a lot of objects and want to delete all, use rm(list=ls()) * In this case we are using ls() function inside another function that takes a list argument, so we are listing all objects and then deleting them with rm() * arguments need the =, not &lt;- <code>rm(list &lt;- ls())</code> causes errors</p>
 <p><strong>R packages</strong></p>
 <ul>
 <li>we can write our own packages or obtain package written by others.</li>
 <li>Over 7,000 packages on CRAN (the comprehensive R archive network)</li>
-<li>R &amp; RStudio
-<ul>
-<li><code>installed.packages() #list packages</code></li>
-<li><code>install.packages(&quot;packagename1&quot;, &quot;packagename2&quot;) #install on or many packages</code></li>
-<li><code>update.pakcages()</code></li>
-<li>remove.packages(“packagename”)</li>
-<li>library(packagename) #make package available</li>
-</ul></li>
+<li>In RStudio console run:</li>
 </ul>
+<pre class="r"><code>installed.packages() #list packages
+install.packages(&quot;packagename1&quot;, &quot;packagename2&quot;) #install one or many packages
+update.pakcages()
+remove.packages(&quot;packagename&quot;)
+library(packagename) #make package available </code></pre>
 </div>
 <div id="project-management-with-rstudio-10-min" class="section level4">
 <h4>Project management with RStudio (10 min)</h4>
@@ -240,100 +274,182 @@ x &lt;- 1:5
 <li>matrix</li>
 <li>data.frame</li>
 </ul>
-<p><strong>Vectors</strong> * most common data structure, workhorse of R * AKA ‘atomic vectors’ because they can only contain on data type * building blocks of every other data structure * <code>x &lt;- vector()</code> creates an empty vector, by default logical 0 length vector</p>
-<pre><code>x &lt;- vector(length = 10) # with a predefined length
-x</code></pre>
+<p><strong>Vectors</strong></p>
 <ul>
-<li>Should be 10 falses above ``` x &lt;- vector(“character”, length = 10) # with a predefined length and type x</li>
+<li>most common data structure, workhorse of R</li>
+<li>AKA ‘atomic vectors’ because they can only contain on data type</li>
+<li>building blocks of every other data structure</li>
+<li><code>x &lt;- vector()</code> creates an empty vector, by default logical 0 length vector</li>
 </ul>
-<pre><code>* create a vector using the concatenate or combine fucntion c()
-</code></pre>
-<p>x &lt;- c(10, 12, 45, 33) x</p>
-<pre><code>
-* you can create a vectors using a sequence</code></pre>
-<p>series &lt;- 1:10 series</p>
-<pre><code>
- ```
- seq(10)
- seq(1, 10, by = 0.1) #from 1 to 10 by 0.1
- ```
- * you can use the c() to add elements to a vector
- </code></pre>
-<p>x x &lt;- c(x, 57) x</p>
-<pre><code>
-* vectors can contain only one atomic type
-* if you try to combing different types R will create a vector of LCD 
-* called implicit coercion
-* coercion rule goes: `logical -&gt; integer -&gt; numeric -&gt; complex -&gt; character`
-* Sometimes you need to convert explicitly by using the `as.&lt;class_name&gt;`
-* `as.numeric()` `as.character()`
-</code></pre>
-<p>as.character(x) x&lt;-c(TRUE,FALSE,1,5,2) x as.character(x)</p>
-<pre><code>
-* `as.complex(x)`</code></pre>
-<p>x &lt;- 0:6 as.logical(x)</p>
-<pre><code>* 0 is FALSE while every other number is true
-* common pattern in other languages
-</code></pre>
-<p>x &lt;- c(“a”, “b”, “c”) as.numeric(x) #throws warning as.locgical(x) #no warning</p>
-<pre><code>
-**Special Objects**
-* NA is special object in R that denotes a missing value - can occur in other types of vectors
-* INF denote infinity (+ or -)
-* NaN - not a number (0/0)
-* NULL denotes data structure doesn't exists
-
-* you can ask questions about the structure of vectors 
-</code></pre>
-<p>x &lt;- 0:10 tail(x, n=2) # get the last ‘n’ elements</p>
-<pre><code>
-* `head(x, n=1 # get the first 'n' elements`
-* `length(x)`
-* `str(x)`
-* Vectors can be named:</code></pre>
-<p>x &lt;- 1:4 names(x) &lt;- c(“a”, “b”, “c”, “d”) x</p>
-<pre><code>
-**Matricies**
-* atomic vectors with added dimensions attributes
-* create with matrix function, let's getnerate some data
-</code></pre>
-<p>set.seed(1) # make sure the random numbers are the same for each run x &lt;- matrix(rnorm(18), ncol=6, nrow=3) x</p>
-<pre><code>
-* `str(x)`
-* we can use `rownames` `colnames`, and `dimnames` to set or retrieve the column &amp; row names
-* `nrow` &amp; `ncol` will give number of rows &amp; cols (this works on data frames too)
-* length will tell you number or elements
-
-**Factors**
-* special vectors that represent categorical data (sex, dogs breeds, etc.)
-* can be ordered or unordered
-* important for model functions such as aov(), lm(), glm() &amp; in plot methods
-* create with factor function
-</code></pre>
-<p>x &lt;- factor(c(“yes”, “no”, “no”, “yes”, “yes”)) x</p>
-<pre><code>
-* output similar to character vector but with levels 
-* `str(x)`
-* factors often look and behave like char vectors, they reallly are integers under the hood `no=1, yes=2`
-* modeling fuctions basline (first) level is important, by default order is determined by alpha of words entered
-* change this by specifying levels
-</code></pre>
-<p>x &lt;- factor(c(“case”, “control”, “control”, “case”), levels = c(“control”, “case”)) str(x)</p>
-<pre><code>
-**Lists**
-* compbine different types of data 
-* act as containers
-* can contain any data structure
-* create using list or as.list()
-</code></pre>
-<p>x &lt;- list(1, “a”, TRUE, 1+4i) x</p>
-<pre><code>
-* each element of list denoted by [[ 
-* inside each list element is a atomic vector length of one
-* more complex example 
-</code></pre>
-<p>xlist &lt;- list(a = “Research Bazaar”, b = 1:10, data = head(iris)) xlist</p>
-<p>```</p>
+<pre class="r"><code>x &lt;- vector(length = 10) # with a predefined length
+x</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<ul>
+<li>Should be 10 falses above</li>
+</ul>
+<pre class="r"><code>x &lt;- vector(&quot;character&quot;, length = 10)  # with a predefined length and type
+x</code></pre>
+<pre><code>##  [1] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot;</code></pre>
+<ul>
+<li>create a vector using the concatenate or combine fucntion c()</li>
+</ul>
+<pre class="r"><code>x &lt;- c(10, 12, 45, 33)
+x</code></pre>
+<pre><code>## [1] 10 12 45 33</code></pre>
+<ul>
+<li>you can create a vectors using a sequence</li>
+</ul>
+<pre class="r"><code>series &lt;- 1:10
+series</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre class="r"><code> seq(10)</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre class="r"><code> seq(1, 10, by = 0.1) #from 1 to 10 by 0.1</code></pre>
+<pre><code>##  [1]  1.0  1.1  1.2  1.3  1.4  1.5  1.6  1.7  1.8  1.9  2.0  2.1  2.2  2.3
+## [15]  2.4  2.5  2.6  2.7  2.8  2.9  3.0  3.1  3.2  3.3  3.4  3.5  3.6  3.7
+## [29]  3.8  3.9  4.0  4.1  4.2  4.3  4.4  4.5  4.6  4.7  4.8  4.9  5.0  5.1
+## [43]  5.2  5.3  5.4  5.5  5.6  5.7  5.8  5.9  6.0  6.1  6.2  6.3  6.4  6.5
+## [57]  6.6  6.7  6.8  6.9  7.0  7.1  7.2  7.3  7.4  7.5  7.6  7.7  7.8  7.9
+## [71]  8.0  8.1  8.2  8.3  8.4  8.5  8.6  8.7  8.8  8.9  9.0  9.1  9.2  9.3
+## [85]  9.4  9.5  9.6  9.7  9.8  9.9 10.0</code></pre>
+<ul>
+<li>you can use the c() to add elements to a vector</li>
+</ul>
+<pre class="r"><code>x</code></pre>
+<pre><code>## [1] 10 12 45 33</code></pre>
+<pre class="r"><code>x &lt;- c(x, 57)
+x</code></pre>
+<pre><code>## [1] 10 12 45 33 57</code></pre>
+<ul>
+<li>vectors can contain only one atomic type</li>
+<li>if you try to combing different types R will create a vector of LCD</li>
+<li>called implicit coercion</li>
+<li>coercion rule goes: <code>logical -&gt; integer -&gt; numeric -&gt; complex -&gt; character</code></li>
+<li>Sometimes you need to convert explicitly by using the <code>as.&lt;class_name&gt;</code></li>
+<li><code>as.numeric()</code> <code>as.character()</code></li>
+</ul>
+<pre class="r"><code>as.character(x)</code></pre>
+<pre><code>## [1] &quot;10&quot; &quot;12&quot; &quot;45&quot; &quot;33&quot; &quot;57&quot;</code></pre>
+<pre class="r"><code>x&lt;-c(TRUE,FALSE,1,5,2)
+x</code></pre>
+<pre><code>## [1] 1 0 1 5 2</code></pre>
+<pre class="r"><code>as.character(x)</code></pre>
+<pre><code>## [1] &quot;1&quot; &quot;0&quot; &quot;1&quot; &quot;5&quot; &quot;2&quot;</code></pre>
+<ul>
+<li><code>as.complex(x)</code></li>
+</ul>
+<pre class="r"><code>x &lt;- 0:6
+as.logical(x)</code></pre>
+<pre><code>## [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<ul>
+<li>0 is FALSE while every other number is true</li>
+<li>common pattern in other languages</li>
+</ul>
+<pre class="r"><code>x &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+as.numeric(x) #throws warning
+as.locgical(x) #no warning</code></pre>
+<p><strong>Special Objects</strong></p>
+<ul>
+<li>NA is special object in R that denotes a missing value - can occur in other types of vectors</li>
+<li>INF denote infinity (+ or -)</li>
+<li>NaN - not a number (0/0)</li>
+<li><p>NULL denotes data structure doesn’t exists</p></li>
+<li><p>you can ask questions about the structure of vectors</p></li>
+</ul>
+<pre class="r"><code>x &lt;- 0:10
+tail(x, n=2) # get the last 'n' elements</code></pre>
+<pre><code>## [1]  9 10</code></pre>
+<ul>
+<li><code>head(x, n=1 # get the first 'n' elements</code></li>
+<li><code>length(x)</code></li>
+<li><code>str(x)</code></li>
+<li>Vectors can be named:</li>
+</ul>
+<pre class="r"><code>x &lt;- 1:4
+names(x) &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;)
+x</code></pre>
+<pre><code>## a b c d 
+## 1 2 3 4</code></pre>
+<p><strong>Matricies</strong></p>
+<ul>
+<li>atomic vectors with added dimensions attributes</li>
+<li>create with matrix function, let’s getnerate some data</li>
+</ul>
+<pre class="r"><code>set.seed(1) # make sure the random numbers are the same for each run
+x &lt;- matrix(rnorm(18), ncol=6, nrow=3)
+x</code></pre>
+<pre><code>##            [,1]       [,2]      [,3]       [,4]       [,5]        [,6]
+## [1,] -0.6264538  1.5952808 0.4874291 -0.3053884 -0.6212406 -0.04493361
+## [2,]  0.1836433  0.3295078 0.7383247  1.5117812 -2.2146999 -0.01619026
+## [3,] -0.8356286 -0.8204684 0.5757814  0.3898432  1.1249309  0.94383621</code></pre>
+<ul>
+<li><code>str(x)</code></li>
+<li>we can use <code>rownames</code> <code>colnames</code>, and <code>dimnames</code> to set or retrieve the column &amp; row names</li>
+<li><code>nrow</code> &amp; <code>ncol</code> will give number of rows &amp; cols (this works on data frames too)</li>
+<li>length will tell you number or elements</li>
+</ul>
+<p><strong>Factors</strong></p>
+<ul>
+<li>special vectors that represent categorical data (sex, dogs breeds, etc.)</li>
+<li>can be ordered or unordered</li>
+<li>important for model functions such as aov(), lm(), glm() &amp; in plot methods</li>
+<li>create with factor function</li>
+</ul>
+<pre class="r"><code>x &lt;- factor(c(&quot;yes&quot;, &quot;no&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;yes&quot;))
+x</code></pre>
+<pre><code>## [1] yes no  no  yes yes
+## Levels: no yes</code></pre>
+<ul>
+<li>output similar to character vector but with levels</li>
+<li><code>str(x)</code></li>
+<li>factors often look and behave like char vectors, they reallly are integers under the hood <code>no=1, yes=2</code></li>
+<li>modeling fuctions basline (first) level is important, by default order is determined by alpha of words entered</li>
+<li>change this by specifying levels</li>
+</ul>
+<pre class="r"><code>x &lt;- factor(c(&quot;case&quot;, &quot;control&quot;, &quot;control&quot;, &quot;case&quot;), levels = c(&quot;control&quot;, &quot;case&quot;))
+str(x)</code></pre>
+<pre><code>##  Factor w/ 2 levels &quot;control&quot;,&quot;case&quot;: 2 1 1 2</code></pre>
+<p><strong>Lists</strong></p>
+<ul>
+<li>compbine different types of data</li>
+<li>act as containers</li>
+<li>can contain any data structure</li>
+<li>create using list or as.list()</li>
+</ul>
+<pre class="r"><code>x &lt;- list(1, &quot;a&quot;, TRUE, 1+4i)
+x</code></pre>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] &quot;a&quot;
+## 
+## [[3]]
+## [1] TRUE
+## 
+## [[4]]
+## [1] 1+4i</code></pre>
+<ul>
+<li>each element of list denoted by [[</li>
+<li>inside each list element is a atomic vector length of one</li>
+<li>more complex example</li>
+</ul>
+<pre class="r"><code>xlist &lt;- list(a = &quot;Research Bazaar&quot;, b = 1:10, data = head(iris))
+xlist</code></pre>
+<pre><code>## $a
+## [1] &quot;Research Bazaar&quot;
+## 
+## $b
+##  [1]  1  2  3  4  5  6  7  8  9 10
+## 
+## $data
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
 <ul>
 <li>list contains character vectors of one, numeric vector with 10 entries, and a small data frame from a built-in dataset in R (see ?data)</li>
 <li>each list element named – see $a instead of [[1]]</li>

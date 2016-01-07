@@ -14,9 +14,12 @@ output: html_document
   	* start quiz, student paced, ask students to use UCSD email
 * put history in accessible place for students (DROPBOX)
 
-**Intro to Software Carpentry:** http://swcarpentry.github.io/slideshows/introducing-software-carpentry/index.html#slide-0 
+**Intro to Software Carpentry:**
+
+http://swcarpentry.github.io/slideshows/introducing-software-carpentry/index.html#slide-0 
 
 ####Checklist for class:
+
 * class website: http://ucsdlib.github.io/win2016-gps-intro-R/
 * etherpad: https://public.etherpad-mozilla.org/p/gps-intro-r
 * Tim's Rhistory: https://www.dropbox.com/XXX
@@ -56,10 +59,10 @@ output: html_document
 	* console `>` with blinking cursor, much like command line
 	* "read, evaluate, print, loop" REPL - many languages adopt this paradigm (stata)
 
-	```
-	   1 + 100
-   	   1 + 
-	```
+```{r eval=FALSE}
+1 + 100
+1 + 
+```
 
 * if you hit return and R shows a "+" instead of >, waiting for you to comlete command, ESC or control+c will escape
 
@@ -74,24 +77,32 @@ output: html_document
 `3+5*2` v. `(3+5) * 2`
 
 * this can be hard to read 
+```{r eval=F}
 (3 + (5 * (2 ^ 2))) # hard to read
 3 + 5 * 2 ^ 2       # clear, if you remember the rules
 3 + 5 * (2 ^ 2)     # if you forget some rules, this might help
+```
 
 * really small or large numbers get scientific notation
 * `2/1000` #2e-04 shorthand for 10^XX So 2e-4 is shorthand for 2 * 10^(-4).
 * `5e3 #note lack of minus` 
 
 **Math functions - many built in functions**
-* `sin(1)` #trig functions
-* `log(1)` # natural log
-* `log10(10)` #base-10 log
-* `exp(0.5)` #e^(1/2)
+
+```{r}
+sin(1) #trig functions
+log(1) # natural log
+log10(10) #base-10 log
+exp(0.5) #e^(1/2)
+```
+
+
 * Dont worry about remembering functions, use google 
 * use RSTudio's autocompletion feature if you can remember beginning of function
 * Typing ? before function brings up help page in Rstudio
 
 **Comparing things**
+
 ```{r}
 1 == 1 # equality (note two equals signs, read as "is equal to")
 1 != 2  # inequality (read as "is not equal to")
@@ -112,6 +123,7 @@ all.equal(0.1+0.05, 0.15)
 * `all.equal(0.1+0.05, 0.15)`
 
 **Variable & assignments**
+
 * Store values in vars using assignment operator <-, like `x <- 1/40`
 * Look in Environment tab in Rstudio
 * our var can be used in place of a number in calculations `log(x)`
@@ -124,15 +136,15 @@ all.equal(0.1+0.05, 0.15)
 * Can use = for assignment but less common among R users
 
 **Vectorization**
+
 * R is vectorized, meaning that variables and functions can have vectors as values
-```
+
+```{r}
 1:5
 2^(1:5)
 x <- 1:5
 2^x
 ```
-
-* more to come on this
 
 **Managing your enviorment** 
 * usefule commands for working with R session 
@@ -147,14 +159,23 @@ x <- 1:5
 
 * we can write our own packages or obtain package written by others.
 * Over 7,000 packages on CRAN (the comprehensive R archive network)
-* R & RStudio 
-	- `installed.packages() #list packages`
-	- `install.packages("packagename1", "packagename2") #install on or many packages`
-	- `update.pakcages()`
-	- remove.packages("packagename")
-	- library(packagename) #make package available 
+* In RStudio console run: 
+```{r}
+
+```
+
+```{r eval=FALSE}
+installed.packages() #list packages
+install.packages("packagename1", "packagename2") #install one or many packages
+update.pakcages()
+remove.packages("packagename")
+library(packagename) #make package available 
+
+```
+
 
 #### Project management with RStudio (10 min)
+
 * most ppl tend to organize projects like so
 * http://swcarpentry.github.io/r-novice-gapminder/fig/bad_layout.png
 * Create project in RStudio called gps-r 
@@ -162,6 +183,7 @@ x <- 1:5
 	- need screen shot 
 
 #### Seeking help (5min)
+
 To be able to access R help files for functions and operators. 
 * R & every package provides help files for function. 
 * to search: `?function_name` or `help(function_name)` 
@@ -173,6 +195,7 @@ To be able to access R help files for functions and operators.
 * don't know where to begin to find a package you need, look at CRAN taask views http://cran.at.r-project.org/web/views/ (cat based )
 
 #### Data structures (21m)
+
 Know R data types and the basic data structures commonly encountered. To be able to inspect R objects.
 
 **R has basic 5 atomic types** - atomic b/c they can't be dcomposed into anything smaller.
@@ -203,42 +226,46 @@ str()  # what is it?
 * data.frame
 
 **Vectors**
+
 * most common data structure, workhorse of R
 * AKA 'atomic vectors' because they can only contain on data type
 * building blocks of every other data structure
 * `x <- vector()` creates an empty vector, by default logical 0 length vector
 
-```
+```{r}
 x <- vector(length = 10) # with a predefined length
 x
 ```
 
 * Should be 10 falses  above
-```
+
+```{r}
 x <- vector("character", length = 10)  # with a predefined length and type
 x
 
 ```
 * create a vector using the concatenate or combine fucntion c()
 
-```
+```{r}
 x <- c(10, 12, 45, 33)
 x
 ```
 
 * you can create a vectors using a sequence
-```
+
+```{r}
 series <- 1:10
 series
 ```
 
- ```
+```{r}
  seq(10)
  seq(1, 10, by = 0.1) #from 1 to 10 by 0.1
- ```
+```
+ 
  * you can use the c() to add elements to a vector
  
-```
+```{r}
 x
 x <- c(x, 57)
 x
@@ -251,7 +278,7 @@ x
 * Sometimes you need to convert explicitly by using the `as.<class_name>`
 * `as.numeric()` `as.character()`
 
-```
+```{r}
 as.character(x)
 x<-c(TRUE,FALSE,1,5,2)
 x
@@ -259,15 +286,17 @@ as.character(x)
 ```
 
 * `as.complex(x)`
-```
+
+```{r}
 x <- 0:6
 as.logical(x)
 
 ```
+
 * 0 is FALSE while every other number is true
 * common pattern in other languages
 
-```
+```{r eval=FALSE}
 x <- c("a", "b", "c")
 as.numeric(x) #throws warning
 as.locgical(x) #no warning
@@ -275,6 +304,7 @@ as.locgical(x) #no warning
 ```
 
 **Special Objects**
+
 * NA is special object in R that denotes a missing value - can occur in other types of vectors
 * INF denote infinity (+ or -)
 * NaN - not a number (0/0)
@@ -282,7 +312,7 @@ as.locgical(x) #no warning
 
 * you can ask questions about the structure of vectors 
 
-```
+```{r}
 x <- 0:10
 tail(x, n=2) # get the last 'n' elements
 ```
@@ -291,17 +321,19 @@ tail(x, n=2) # get the last 'n' elements
 * `length(x)`
 * `str(x)`
 * Vectors can be named:
-```
+
+```{r}
 x <- 1:4
 names(x) <- c("a", "b", "c", "d")
 x
 ```
 
 **Matricies**
+
 * atomic vectors with added dimensions attributes
 * create with matrix function, let's getnerate some data
 
-```
+```{r}
 set.seed(1) # make sure the random numbers are the same for each run
 x <- matrix(rnorm(18), ncol=6, nrow=3)
 x
@@ -313,12 +345,13 @@ x
 * length will tell you number or elements
 
 **Factors**
+
 * special vectors that represent categorical data (sex, dogs breeds, etc.)
 * can be ordered or unordered
 * important for model functions such as aov(), lm(), glm() & in plot methods
 * create with factor function
 
-```
+```{r}
 x <- factor(c("yes", "no", "no", "yes", "yes"))
 x
 ```
@@ -329,18 +362,19 @@ x
 * modeling fuctions basline (first) level is important, by default order is determined by alpha of words entered
 * change this by specifying levels
 
-```
+```{r}
 x <- factor(c("case", "control", "control", "case"), levels = c("control", "case"))
 str(x)
 ```
 
 **Lists**
+
 * compbine different types of data 
 * act as containers
 * can contain any data structure
 * create using list or as.list()
 
-```
+```{r}
 x <- list(1, "a", TRUE, 1+4i)
 x
 
@@ -350,7 +384,7 @@ x
 * inside each list element is a atomic vector length of one
 * more complex example 
 
-```
+```{r}
 xlist <- list(a = "Research Bazaar", b = 1:10, data = head(iris))
 xlist
 
