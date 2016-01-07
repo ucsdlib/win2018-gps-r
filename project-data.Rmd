@@ -5,7 +5,9 @@ date: "January 4, 2016"
 output: html_document
 ---
 
-Goal: to start utilizing RStudio's project managment feature and use 
+Goal: To start utilizing RStudio's project managment feature and use more reproducible approaches to data analysis. 
+
+
 ## Create New Poroject in RStudio
 
 1. Open RStudio and go to `File>New Project` in the top menu
