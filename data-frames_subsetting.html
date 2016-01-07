@@ -67,8 +67,8 @@ img {
 </div>
 
 
-<div id="data-frames-reading-in-data-20xm" class="section level4">
-<h4>Data frames &amp; reading in data (20xm)</h4>
+<div id="data-frames-reading-in-data-20m" class="section level4">
+<h4>Data frames &amp; reading in data (20m)</h4>
 <p>Become familiar with data frames &amp; able to read data into R.</p>
 <ul>
 <li>similar to matricies but each column can be different atomic type</li>
@@ -76,7 +76,7 @@ img {
 <li>data frames are lists under the hood</li>
 <li>can be crated manually</li>
 </ul>
-<pre class="r"><code>    df &lt;- data.frame(id = c('a', 'b', 'c', 'd', 'e', 'f'), x = 1:6, y = c(214:219))
+<pre class="r"><code>df &lt;- data.frame(id = c('a', 'b', 'c', 'd', 'e', 'f'), x = 1:6, y = c(214:219))
 df</code></pre>
 <pre><code>##   id x   y
 ## 1  a 1 214
@@ -349,30 +349,36 @@ x</code></pre>
 <li>unfort can’t skip or remove as easily</li>
 </ul></li>
 <li><code>x[-which(names(x)==&quot;a&quot;)]</code> # which function returns all true elements of its argument, which is negated</li>
-<li>let’s step thru
-<ul>
-<li><code>names(x) == &quot;a&quot;</code> # the condition applied to vector x, only a true</li>
-<li><code>which(names(x)==&quot;a&quot;)</code> # which converts this to a index</li>
-</ul></li>
-<li>skipping multiple named indicies uses %in%
-<ul>
-<li><code>x[-which(names(x) %in% c(&quot;a&quot;, &quot;c&quot;))]</code></li>
-<li>So why can’t we use == like before?</li>
-</ul></li>
+<li>let’s step through this:</li>
 </ul>
-<p>TODO - make sense of below:</p>
+<pre class="r"><code>names(x) == &quot;a&quot; # the condition applied to vector x, only a true</code></pre>
+<pre><code>## [1]  TRUE FALSE FALSE FALSE</code></pre>
+<pre class="r"><code>which(names(x)==&quot;a&quot;) # which converts this to a index</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>x[-which(names(x)==&quot;a&quot;)] # using the &quot;-&quot; will remove the element at that index</code></pre>
+<pre><code>##   b   c   e 
+## 6.2 7.1 7.5</code></pre>
+<ul>
+<li><p>skipping multiple named indicies uses %in%</p></li>
+<li><code>x[-which(names(x) %in% c(&quot;a&quot;, &quot;c&quot;))]</code></li>
+<li>So why can’t we use == like above?</li>
+<li>Because ‘==’ expects objects of the same length and if not, will start repeating the shorter object</li>
+<li><p>Called recycling rule</p></li>
+</ul>
+<p><strong>R recycling rule</strong></p>
 <pre class="r"><code>names(x) == c('a', 'c') #warnings 
 #== works slightly differently than %in%. It will compare each element of its left argument to the corresponding element of its right argument.
+# R recycles the shorter vector in a equality comparison
 
 c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;e&quot;)  # names of x
    |    |    |    |    # The elements == is comparing
 c(&quot;a&quot;, &quot;c&quot;)
 
 c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;e&quot;)  # names of x
-   |    |    |    |    # The elements == is comparing
-c(&quot;a&quot;, &quot;c&quot;, &quot;a&quot;, &quot;c&quot;)</code></pre>
+   |    |    |    |    
+c(&quot;a&quot;, &quot;c&quot;, &quot;a&quot;, &quot;c&quot;) # The elements == is comparing</code></pre>
 <ul>
-<li>Non-unique names possible for multiple elements in a vector to have the same name</li>
+<li>Non-unique names are allowable for multiple elements in a vector</li>
 </ul>
 <pre class="r"><code>x &lt;- 1:3
 x</code></pre>
@@ -394,10 +400,25 @@ x</code></pre>
 </ul></li>
 </ul>
 <p><strong>Subsetting through other logical operators</strong></p>
-<p>TODO: more work on this, * we can subset through logical operations * <code>x[c(TRUE, TRUE, FALSE, FALSE)]</code> * Note that in this case, the logical vector is also recycled to the length of the vector we’re subsetting! * <code>x[c(TRUE, FALSE)]</code> * Since comparison operators evaluate to logical vectors, we can also use them to succinctly subset vectors: - <code>x[x &gt; 7]</code></p>
+<ul>
+<li>we can subset through logical operations</li>
+<li><code>x[c(TRUE, TRUE, FALSE, FALSE)]</code></li>
+<li>Note that in this case, the logical vector is also recycled to the length of the vector we’re subsetting!</li>
+<li><code>x[c(TRUE, FALSE)]</code></li>
+<li>Since comparison operators evaluate to logical vectors, we can also use them to succinctly subset vectors:
+<ul>
+<li><code>x[x &gt; 7]</code></li>
+</ul></li>
+</ul>
 <p>There are many situations in which you will wish to combine multiple conditions. To do so several logical operations exist in R:</p>
-<p>| logical OR: returns TRUE, if either the left or right are TRUE. &amp; logical AND: returns TRUE if both the left and right are TRUE ! logical NOT: converts TRUE to FALSE and FALSE to TRUE &amp;&amp; and || compare the individual elements of two vectors. Recycling rules also apply here.</p>
-<p><strong>Handling special values</strong> At some point you will encounter functions in R which cannot handle missing, infinite, or undefined data.</p>
+<ul>
+<li>| logical OR: returns TRUE, if either the left or right are TRUE.</li>
+<li>&amp; logical AND: returns TRUE if both the left and right are TRUE</li>
+<li>! logical NOT: converts TRUE to FALSE and FALSE to TRUE</li>
+<li>&amp;&amp; and || compare the individual elements of two vectors. Recycling rules also apply here.</li>
+</ul>
+<p><strong>Handling special values</strong></p>
+<p>At some point you will encounter functions in R which cannot handle missing, infinite, or undefined data.</p>
 <p>special functions to deal with this:</p>
 <ul>
 <li>is.na will return all positions in a vector, matrix, or data.frame containing NA.</li>
@@ -405,7 +426,8 @@ x</code></pre>
 <li>is.finite will return all positions in a vector, matrix, or data.frame that do not contain NA, NaN or Inf.</li>
 <li>na.omit will filter out all missing values from a vector</li>
 </ul>
-<p><strong>factor subsetting</strong> Factor subsetting works the same way as vector subsetting.</p>
+<p><strong>factor subsetting</strong></p>
+<p>Factor subsetting works the same way as vector subsetting.</p>
 <pre class="r"><code>f &lt;- factor(c(&quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;c&quot;, &quot;d&quot;))
 f[f == &quot;a&quot;]</code></pre>
 <pre><code>## [1] a a
@@ -422,7 +444,8 @@ f[f == &quot;a&quot;]</code></pre>
 <li>f[-3]</li>
 </ul></li>
 </ul>
-<p><strong>Matrix subsetting</strong> Matrices are also subsetted using the [ function. In this case it takes two arguments: the first applying to the rows, the second to its columns:</p>
+<p><strong>Matrix subsetting</strong></p>
+<p>Matrices are also subsetted using the [ function. In this case it takes two arguments: the first applying to the rows, the second to its columns:</p>
 <pre class="r"><code>set.seed(1)
 m &lt;- matrix(rnorm(6*4), ncol=4, nrow=6)
 m[3:4, c(3,1)]</code></pre>
@@ -461,7 +484,7 @@ m[3:4, c(3,1)]</code></pre>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    2    3
 ## [2,]    4    5    6</code></pre>
-<p><strong>list subsetting</strong></p>
+<p><strong>List subsetting</strong></p>
 <p>Three functions to subset lists [, [[, $</p>
 <ul>
 <li>Using [ will always return a list. If you want to subset a list, but not extract an element, then you will likely use [.</li>
@@ -479,9 +502,11 @@ xlist[1]</code></pre>
 <li>but you cant extract more than one element at once <code>xlist[[1:2]]</code></li>
 <li>nor skip elements <code>xlist[[-1]]</code></li>
 <li>but you can use names to subset and extract <code>xlist[['a']]</code></li>
-<li>$ function extracts by name xlist$data <strong>Data frame</strong> Data frames are lists under the hood, so similar methods apply. [ will act the same way as for lists, where each list is a column</li>
+<li>$ function extracts by name xlist$data</li>
 </ul></li>
 </ul>
+<p><strong>Data frame</strong></p>
+<p>Data frames are lists under the hood, so similar methods apply. [ will act the same way as for lists, where each list is a column</p>
 <pre class="r"><code>head(gapminder[3])</code></pre>
 <pre><code>##        pop
 ## 1  8425333

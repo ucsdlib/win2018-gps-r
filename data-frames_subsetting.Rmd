@@ -15,7 +15,7 @@ Become familiar with data frames & able to read data into R.
 * can be crated manually
 
 ```{r}
-    df <- data.frame(id = c('a', 'b', 'c', 'd', 'e', 'f'), x = 1:6, y = c(214:219))
+df <- data.frame(id = c('a', 'b', 'c', 'd', 'e', 'f'), x = 1:6, y = c(214:219))
 df
 length(df) #tells you the number of columns not rows
 nrow(df) #gives you num rows
@@ -227,6 +227,7 @@ x
 x <- x[-4]
 x
 ```
+
 **Subsetting by name**
 
 * extract elements by using their name
@@ -234,29 +235,38 @@ x
     - usuall more reliable way to subset objects, index changes more than names
     - unfort can't skip or remove as easily
 * `x[-which(names(x)=="a")]` # which function returns all true elements of its argument, which is negated 
-* let's step thru
-    - `names(x) == "a"` # the condition applied to vector x, only a true
-    - `which(names(x)=="a")` # which converts this to a index
-* skipping multiple named indicies uses %in%
-    - `x[-which(names(x) %in% c("a", "c"))]`
-    - So why can’t we use == like before? 
+* let's step through this: 
 
-TODO - make sense of below:
+```{r}
+names(x) == "a" # the condition applied to vector x, only a true
+which(names(x)=="a") # which converts this to a index
+x[-which(names(x)=="a")] # using the "-" will remove the element at that index
+```
+
+* skipping multiple named indicies uses %in%
+
+* `x[-which(names(x) %in% c("a", "c"))]`
+* So why can’t we use == like above? 
+* Because '==' expects objects of the same length and if not, will start repeating the shorter object
+* Called recycling rule 
+
+**R recycling rule** 
 
 ```{r eval=F}
 names(x) == c('a', 'c') #warnings 
 #== works slightly differently than %in%. It will compare each element of its left argument to the corresponding element of its right argument.
+# R recycles the shorter vector in a equality comparison
 
 c("a", "b", "c", "e")  # names of x
    |    |    |    |    # The elements == is comparing
 c("a", "c")
 
 c("a", "b", "c", "e")  # names of x
-   |    |    |    |    # The elements == is comparing
-c("a", "c", "a", "c")
+   |    |    |    |    
+c("a", "c", "a", "c") # The elements == is comparing
 ```
 
-*  Non-unique names possible for multiple elements in a vector to have the same name
+*  Non-unique names are allowable for multiple elements in a vector 
 
 ```{r}
 x <- 1:3
@@ -272,7 +282,6 @@ x[which(names(x) == 'a')]  # returns all three values
 
 **Subsetting through other logical operators**
 
-TODO: more work on this,
 * we can subset through logical operations
 * `x[c(TRUE, TRUE, FALSE, FALSE)]`
 * Note that in this case, the logical vector is also recycled to the length of the vector we’re subsetting!
@@ -282,12 +291,13 @@ TODO: more work on this,
 
 There are many situations in which you will wish to combine multiple conditions. To do so several logical operations exist in R:
 
-| logical OR: returns TRUE, if either the left or right are TRUE.
-& logical AND: returns TRUE if both the left and right are TRUE
-! logical NOT: converts TRUE to FALSE and FALSE to TRUE
-&& and || compare the individual elements of two vectors. Recycling rules also apply here.
+* | logical OR: returns TRUE, if either the left or right are TRUE.
+* & logical AND: returns TRUE if both the left and right are TRUE
+* ! logical NOT: converts TRUE to FALSE and FALSE to TRUE
+* && and || compare the individual elements of two vectors. Recycling rules also apply here.
 
 **Handling special values**
+
 At some point you will encounter functions in R which cannot handle missing, infinite, or undefined data.
 
 special functions to deal with this: 
@@ -298,6 +308,7 @@ special functions to deal with this:
 * na.omit will filter out all missing values from a vector
 
 **factor subsetting**
+
 Factor subsetting works the same way as vector subsetting.
 
 ```{r}
@@ -311,6 +322,7 @@ f[1:3]
     - f[-3]
 
 **Matrix subsetting**
+
 Matrices are also subsetted using the [ function. In this case it takes two arguments: the first applying to the rows, the second to its columns:
 
 ```{r}
@@ -337,7 +349,7 @@ matrix(1:6, nrow=2, ncol=3, byrow=TRUE) #populate by row use  byrow=TRUE
 
 ```
 
-**list subsetting**
+**List subsetting**
 
 Three functions to subset lists [, [[, $
 
@@ -356,7 +368,9 @@ xlist[1]
     - nor skip elements `xlist[[-1]]`
     - but you can use names to subset and extract `xlist[['a']]`
     - $ function extracts by name xlist$data
+
 **Data frame**
+
 Data frames are lists under the hood, so similar methods apply.
 [ will act the same way as for lists, where each list is a column
 
