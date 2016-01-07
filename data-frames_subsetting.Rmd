@@ -5,7 +5,8 @@ date: "January 7, 2016"
 output: html_document
 ---
 
-#### Data frames & reading in data (20xm)
+#### Data frames & reading in data (20m)
+
 Become familiar with data frames & able to read data into R.
 
 * similar to matricies but each column can be different atomic type
@@ -118,7 +119,7 @@ head(gapminder)
 
 * remember functions for inspecting data structures.
 
-```{r}
+```{r eval=FALSE}
 class() # what is the data structure?
 typeof() # what is its atomic type?
 length() # how long is it? What about two dimensional objects?
@@ -323,7 +324,7 @@ m[3:4, c(3,1)]
 m[, c(3,4)] #column
 m[3,] #if grabbing 1 row, R will convert to vector
 m[3, , drop=FALSE] # keep as a matrix specify a third argument; drop = FALSE:
-m[, c(3,6)] #will throw error if out of range
+#m[, c(3,6)] #will throw error if out of range
 ```
 
 * because matricies are really vectors, you can just use single indexing
