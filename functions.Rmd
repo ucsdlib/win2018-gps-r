@@ -5,8 +5,6 @@ date: "January 7, 2016"
 output: html_document
 ---
 
-## Functions 
-
 Goal: To be to define a function that takes arguments and return a value from a function. Overall, 
 be able to explain why we should divide programs into small, single-purpose functions.
 
