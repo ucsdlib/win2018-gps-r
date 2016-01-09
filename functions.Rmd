@@ -111,4 +111,5 @@ calcGDP(head(gapminder))
 
 ```
 
+### Lab cover 
 
