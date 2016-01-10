@@ -1,0 +1,32 @@
+---
+title: "ggplot-testi"
+author: "Tim Dennis"
+date: "January 9, 2016"
+output: html_document
+---
+```{r}
+library(testit)
+library(ggplot2)
+gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
+
+```
+
+```{r}
+
+w2a1 <- ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +
+  geom_line()
+
+assert("is label year", "year" == w2a1$labels$x[1])
+assert("number rows in data is 1704", 1704 == nrow(w2a1$data))
+## Invisible NULL if all expressions returned TRUE, otherwise an error is signalled and the user-provided message is emitted.
+#if false, would throw error (not executed here b/c would stop rmarkdown build)
+#assert(""number rows in data is 1704", 1705 == nrow(w2a1$data))
+
+```
+
+The object returned by ggplot has many different sub-lists you can grab. Lots of things to choose to test for grading. 
+
+```{r}
+str(w2a1)
+```
+

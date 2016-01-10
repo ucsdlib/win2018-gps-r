@@ -119,7 +119,7 @@ ggplot(data = gapminder, aes(x = lifeExp, y = gdpPercap)) +
 *  make the line thicker by *setting* the **size** aesthetic in the `geom_smooth` layer:
 
 ```{r lm-fit2}
-ggplot(data = gapminder, aes(x = lifeExp, y = gdpPercap)) +
+pwd <- ggplot(data = gapminder, aes(x = lifeExp, y = gdpPercap)) +
   geom_point() + scale_y_log10() + geom_smooth(method="lm", size=1.5)
 ```
 
