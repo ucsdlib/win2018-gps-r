@@ -7,15 +7,28 @@ output: html_document
 ```{r}
 library(testit)
 library(ggplot2)
+library(testthat)
 gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
 
 ```
 
-```{r}
+Create a ggplot object. 
 
+```{r}
+# create a ggplot assign t
 w2a1 <- ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +
   geom_line()
+```
 
+The object returned by ggplot has many different sub-lists you can grab. Lots of things to choose to test for grading. 
+
+```{r}
+str(w2a1)
+```
+
+Test using testit package. 
+
+```{r testit}
 assert("is not labeled year", "year" == w2a1$labels$x[1])
 assert("number rows in data is not 1704", 1704 == nrow(w2a1$data))
 ## Invisible NULL if all expressions returned TRUE, otherwise an error is signalled and the user-provided message is emitted.
@@ -24,9 +37,19 @@ assert("number rows in data is not 1704", 1704 == nrow(w2a1$data))
 
 ```
 
-The object returned by ggplot has many different sub-lists you can grab. Lots of things to choose to test for grading. 
+Test using testthat package. 
 
-```{r}
-str(w2a1)
+```{r testthat}
+
+#expect_that(w2a1, is_a("lm"))
+#Error: w2a1 inherits from gg, ggplot not lm
+
+expect_that(w2a1, is_a('ggplot'))
+
+expect_that("year", equals(w2a1$labels$x[1]))
+
+expect_that(str(w2a1$facet), prints_text("List of 1"))
+
+
 ```
 

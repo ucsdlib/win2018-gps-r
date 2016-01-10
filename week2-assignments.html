@@ -69,15 +69,12 @@ img {
 
 <pre class="r"><code>library(testit)
 library(ggplot2)
+library(testthat)
 gapminder &lt;- read.csv(&quot;data/gapminder-FiveYearData.csv&quot;, header=TRUE)</code></pre>
-<pre class="r"><code>w2a1 &lt;- ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +
-  geom_line()
-
-assert(&quot;is not labeled year&quot;, &quot;year&quot; == w2a1$labels$x[1])
-assert(&quot;number rows in data is not 1704&quot;, 1704 == nrow(w2a1$data))
-## Invisible NULL if all expressions returned TRUE, otherwise an error is signalled and the user-provided message is emitted.
-#if false, would throw error (not executed here b/c would stop rmarkdown build)
-#assert(&quot;&quot;number rows in data is 1704&quot;, 1705 == nrow(w2a1$data))</code></pre>
+<p>Create a ggplot object.</p>
+<pre class="r"><code># create a ggplot assign t
+w2a1 &lt;- ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +
+  geom_line()</code></pre>
 <p>The object returned by ggplot has many different sub-lists you can grab. Lots of things to choose to test for grading.</p>
 <pre class="r"><code>str(w2a1)</code></pre>
 <pre><code>## List of 9
@@ -89,23 +86,91 @@ assert(&quot;number rows in data is not 1704&quot;, 1704 == nrow(w2a1$data))
 ##   ..$ lifeExp  : num [1:1704] 28.8 30.3 32 34 36.1 ...
 ##   ..$ gdpPercap: num [1:1704] 779 821 853 836 740 ...
 ##  $ layers     :List of 1
-##   ..$ :Classes 'proto', 'environment' &lt;environment: 0x7fa3938d5ea0&gt; 
-##  $ scales     :Reference class 'Scales' [package &quot;ggplot2&quot;] with 1 field
-##   ..$ scales: list()
-##   ..and 23 methods, of which 9 are  possibly relevant:
-##   ..  add, clone, find, get_scales, has_scale, initialize, input, n,
-##   ..  non_position_scales
+##   ..$ :Classes 'LayerInstance', 'Layer', 'ggproto' &lt;ggproto object: Class LayerInstance, Layer&gt;
+##     aes_params: list
+##     compute_aesthetics: function
+##     compute_geom_1: function
+##     compute_geom_2: function
+##     compute_position: function
+##     compute_statistic: function
+##     data: waiver
+##     draw_geom: function
+##     geom: &lt;ggproto object: Class GeomLine, GeomPath, Geom&gt;
+##         aesthetics: function
+##         default_aes: uneval
+##         draw_group: function
+##         draw_key: function
+##         draw_layer: function
+##         draw_panel: function
+##         extra_params: na.rm
+##         handle_na: function
+##         non_missing_aes: 
+##         parameters: function
+##         required_aes: x y
+##         setup_data: function
+##         use_defaults: function
+##         super:  &lt;ggproto object: Class GeomPath, Geom&gt;
+##     geom_params: list
+##     inherit.aes: TRUE
+##     map_statistic: function
+##     mapping: NULL
+##     position: &lt;ggproto object: Class PositionIdentity, Position&gt;
+##         compute_layer: function
+##         compute_panel: function
+##         required_aes: 
+##         setup_data: function
+##         setup_params: function
+##         super:  &lt;ggproto object: Class Position&gt;
+##     print: function
+##     show.legend: NA
+##     stat: &lt;ggproto object: Class StatIdentity, Stat&gt;
+##         compute_group: function
+##         compute_layer: function
+##         compute_panel: function
+##         default_aes: uneval
+##         extra_params: na.rm
+##         non_missing_aes: 
+##         parameters: function
+##         required_aes: 
+##         retransform: TRUE
+##         setup_data: function
+##         setup_params: function
+##         super:  &lt;ggproto object: Class Stat&gt;
+##     stat_params: list
+##     subset: NULL
+##     super:  &lt;ggproto object: Class Layer&gt; 
+##  $ scales     :Classes 'ScalesList', 'ggproto' &lt;ggproto object: Class ScalesList&gt;
+##     add: function
+##     clone: function
+##     find: function
+##     get_scales: function
+##     has_scale: function
+##     input: function
+##     n: function
+##     non_position_scales: function
+##     scales: list
+##     super:  &lt;ggproto object: Class ScalesList&gt; 
 ##  $ mapping    :List of 4
 ##   ..$ x     : symbol year
 ##   ..$ y     : symbol lifeExp
 ##   ..$ by    : symbol country
 ##   ..$ colour: symbol continent
 ##  $ theme      : list()
-##  $ coordinates:List of 1
-##   ..$ limits:List of 2
-##   .. ..$ x: NULL
-##   .. ..$ y: NULL
-##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;cartesian&quot; &quot;coord&quot;
+##  $ coordinates:Classes 'CoordCartesian', 'Coord', 'ggproto' &lt;ggproto object: Class CoordCartesian, Coord&gt;
+##     aspect: function
+##     distance: function
+##     expand: TRUE
+##     is_linear: function
+##     labels: function
+##     limits: list
+##     range: function
+##     render_axis_h: function
+##     render_axis_v: function
+##     render_bg: function
+##     render_fg: function
+##     train: function
+##     transform: function
+##     super:  &lt;ggproto object: Class CoordCartesian, Coord&gt; 
 ##  $ facet      :List of 1
 ##   ..$ shrink: logi TRUE
 ##   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;null&quot; &quot;facet&quot;
@@ -116,6 +181,21 @@ assert(&quot;number rows in data is not 1704&quot;, 1704 == nrow(w2a1$data))
 ##   ..$ by    : chr &quot;country&quot;
 ##   ..$ colour: chr &quot;continent&quot;
 ##  - attr(*, &quot;class&quot;)= chr [1:2] &quot;gg&quot; &quot;ggplot&quot;</code></pre>
+<p>Test using testit package.</p>
+<pre class="r"><code>assert(&quot;is not labeled year&quot;, &quot;year&quot; == w2a1$labels$x[1])
+assert(&quot;number rows in data is not 1704&quot;, 1704 == nrow(w2a1$data))
+## Invisible NULL if all expressions returned TRUE, otherwise an error is signalled and the user-provided message is emitted.
+#if false, would throw error (not executed here b/c would stop rmarkdown build)
+#assert(&quot;&quot;number rows in data is 1704&quot;, 1705 == nrow(w2a1$data))</code></pre>
+<p>Test using testthat package.</p>
+<pre class="r"><code>#expect_that(w2a1, is_a(&quot;lm&quot;))
+#Error: w2a1 inherits from gg, ggplot not lm
+
+expect_that(w2a1, is_a('ggplot'))
+
+expect_that(&quot;year&quot;, equals(w2a1$labels$x[1]))
+
+expect_that(str(w2a1$facet), prints_text(&quot;List of 1&quot;))</code></pre>
 
 
 </div>
