@@ -1,0 +1,9 @@
+---
+title: "Data Manipulation with Dplyr"
+author: "Tim Dennis"
+date: "January 10, 2016"
+output: html_document
+---
+
+GOAL: To be able to use the 6 data frame manipulation in dplyr. 
+
