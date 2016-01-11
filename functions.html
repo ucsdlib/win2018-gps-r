@@ -68,7 +68,39 @@ img {
 
 
 <p>Goal: To be to define a function that takes arguments and return a value from a function. Overall, be able to explain why we should divide programs into small, single-purpose functions.</p>
-<p><strong>What is a function?</strong></p>
+<p>Project setup &amp; data instructions: <a href="http://ucsdlib.github.io/win2016-gps-intro-R/project-data.html" class="uri">http://ucsdlib.github.io/win2016-gps-intro-R/project-data.html</a><br />
+Data direct download: <a href="https://goo.gl/8Zi1hv" class="uri">https://goo.gl/8Zi1hv</a></p>
+<p><strong>Last week</strong></p>
+<p>#we learned about R objects:</p>
+<pre class="r"><code>x &lt;- 5
+x1 &lt;- 5:1
+x2 &lt;- c(&quot;two&quot;, &quot;one&quot;, &quot;zero&quot;)
+dat &lt;- data.frame(a = 5:1, b = 1:5, let = letters[1:5])</code></pre>
+<p>#how to inspect them:</p>
+<pre class="r"><code>length(x)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>typeof(x1)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code>class(x1)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code>str(dat)</code></pre>
+<pre><code>## 'data.frame':    5 obs. of  3 variables:
+##  $ a  : int  5 4 3 2 1
+##  $ b  : int  1 2 3 4 5
+##  $ let: Factor w/ 5 levels &quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,..: 1 2 3 4 5</code></pre>
+<p>#how to subset them:</p>
+<pre class="r"><code>x[1]</code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code>x1[c(1,3)]</code></pre>
+<pre><code>## [1] 5 3</code></pre>
+<pre class="r"><code>x2[-2]</code></pre>
+<pre><code>## [1] &quot;two&quot;  &quot;zero&quot;</code></pre>
+<pre class="r"><code>dat[c(1,3), 3:2]</code></pre>
+<pre><code>##   let b
+## 1   a 1
+## 3   c 3</code></pre>
+<div id="what-is-a-function" class="section level3">
+<h3>What is a function?</h3>
 <p>Functions gather a sequence of operations into a whole, preserving it for ongoing use. Functions provide:</p>
 <ul>
 <li>a name we can remember and invoke it by</li>
@@ -77,6 +109,7 @@ img {
 <li>rich connections to the larger programming environment</li>
 </ul>
 <p>As the basic building block of most programming languages, user-defined functions constitute “programming” as much as any single abstraction can. If you have written a function, you are a computer programmer.</p>
+</div>
 <div id="creating-a-function" class="section level3">
 <h3>Creating a function</h3>
 <p>Open a R Script <code>File &gt; New File &gt; R Script</code>:</p>
@@ -88,6 +121,11 @@ img {
 <pre class="r"><code>my_sum(10, 15)</code></pre>
 <pre><code>## [1] 25</code></pre>
 <p>Components of a function:</p>
+<ol style="list-style-type: decimal">
+<li>body</li>
+<li>arguments</li>
+<li>environment</li>
+</ol>
 <pre class="r"><code>body(my_sum)</code></pre>
 <pre><code>## {
 ##     the_sum &lt;- a + b
@@ -134,7 +172,6 @@ fahr_to_kelvin(212)</code></pre>
 <h2>Skip Combining function for lab</h2>
 <ul>
 <li>use farh_to_kelvin and kelvin_to_celsius to create a function that converts dire from fahr_to_celsius</li>
-<li>hint</li>
 </ul>
 </div>
 <div id="calculate-gdp-from-gapminder-dataset" class="section level2">

@@ -80,8 +80,7 @@ ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +
 ```
 
 * the *aesthetic* mapping of **color** has been moved from the
-global plot options in `ggplot` to the `geom_line` layer so it no longer applies
-to the points 
+global plot options in `ggplot` to the `geom_line` layer so it no longer applies to the points 
 
 ## Transformations and statistics
 
