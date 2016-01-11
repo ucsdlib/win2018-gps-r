@@ -8,7 +8,41 @@ output: html_document
 Goal: To be to define a function that takes arguments and return a value from a function. Overall, 
 be able to explain why we should divide programs into small, single-purpose functions.
 
-**What is a function?**
+Data: https://goo.gl/8Zi1hv
+
+**Last week**
+
+\#we learned about R objects: 
+```{r}
+x <- 5
+x1 <- 5:1
+x2 <- c("two", "one", "zero")
+dat <- data.frame(a = 5:1, b = 1:5, let = letters[1:5])
+
+```
+
+\#how to inspect them: 
+
+```{r}
+length(x)
+typeof(x1)
+class(x1)
+str(dat)
+
+```
+
+
+\#how to subset them: 
+```{r}
+x[1]
+x1[c(1,3)]
+x2[-2]
+dat[c(1,3), 3:2]
+
+```
+
+
+###What is a function?
 
 Functions gather a sequence of operations into a whole, preserving it for ongoing use. Functions provide:
 
@@ -38,6 +72,10 @@ my_sum(10, 15)
 ```
 
 Components of a function: 
+
+1. body 
+2. arguments
+3. environment
 
 ```{r}
 body(my_sum)
@@ -88,7 +126,6 @@ kelvin_to_celsius <- function(temp) {
 ## Skip Combining function for lab 
 
 * use farh_to_kelvin and kelvin_to_celsius to create a function that converts dire from fahr_to_celsius
-* hint 
 
 ## Calculate GDP from GapMinder dataset
 
