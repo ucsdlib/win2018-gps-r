@@ -37,6 +37,16 @@ my_sum(10, 15)
 
 ```
 
+Components of a function: 
+
+```{r}
+body(my_sum)
+formals(my_sum)
+#args(my_sum) #for a more human readable version
+environment(my_sum)
+
+```
+
 Let's define a function that converts Fahrenheit to Kelvin.
 
 ```{r}
@@ -110,6 +120,60 @@ calcGDP <- function(dat){
 calcGDP(head(gapminder))
 
 ```
+
+* not very informative. let's add country and year to our arguments
+
+```{r}
+# Takes a dataset and multiplies the population column
+# with the GDP per capita column.
+calcGDP <- function(dat, year=NULL, country=NULL) {
+  if(!is.null(year)) {
+    dat <- dat[dat$year %in% year, ]
+  }
+  if (!is.null(country)) {
+    dat <- dat[dat$country %in% country,]
+  }
+  gdp <- dat$pop * dat$gdpPercap
+
+  new <- cbind(dat, gdp=gdp)
+  return(new)
+}
+
+```
+
+* let's save as a script so we can load our fuctions and source them.
+* you can load in the functions into our R session by using the source function
+
+```{r eval=F}
+source("functions/functions.R")
+```
+
+Lot going on in this function: 
+
+* function subsets the data by country and/or year if their args aren't empty. 
+* then calculates the gdp on the resulting subsetted data
+* adds the result to a new column
+
+```{r}
+head(calcGDP(gapminder, year=2007))
+
+```
+```{r}
+calcGDP(gapminder, country="Australia")
+
+```
+
+```{r}
+calcGDP(gapminder, year=2007, country="Australia")
+
+```
+
+* walk through body of function
+* added two arguments country and year with default value of null
+* we check to see if they are not null with the if operator 
+* and then subset the rows
+* scoping 
+* calculate gdp and creeate a new data frame with column to return 
 
 ### Lab cover 
 

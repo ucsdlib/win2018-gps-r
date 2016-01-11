@@ -87,6 +87,20 @@ img {
 <p>Using (calling) this function:</p>
 <pre class="r"><code>my_sum(10, 15)</code></pre>
 <pre><code>## [1] 25</code></pre>
+<p>Components of a function:</p>
+<pre class="r"><code>body(my_sum)</code></pre>
+<pre><code>## {
+##     the_sum &lt;- a + b
+##     return(the_sum)
+## }</code></pre>
+<pre class="r"><code>formals(my_sum)</code></pre>
+<pre><code>## $a
+## 
+## 
+## $b</code></pre>
+<pre class="r"><code>#args(my_sum) #for a more human readable version
+environment(my_sum)</code></pre>
+<pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <p>Let’s define a function that converts Fahrenheit to Kelvin.</p>
 <pre class="r"><code>fahr_to_kelvin &lt;- function(temp) {
   kelvin &lt;- ((temp - 32) * (5 / 9)) + 273.15
@@ -152,6 +166,70 @@ calcGDP &lt;- function(dat){
 </ul>
 <pre class="r"><code>calcGDP(head(gapminder))</code></pre>
 <pre><code>## [1]  6567086330  7585448670  8758855797  9648014150  9678553274 11697659231</code></pre>
+<ul>
+<li>not very informative. let’s add country and year to our arguments</li>
+</ul>
+<pre class="r"><code># Takes a dataset and multiplies the population column
+# with the GDP per capita column.
+calcGDP &lt;- function(dat, year=NULL, country=NULL) {
+  if(!is.null(year)) {
+    dat &lt;- dat[dat$year %in% year, ]
+  }
+  if (!is.null(country)) {
+    dat &lt;- dat[dat$country %in% country,]
+  }
+  gdp &lt;- dat$pop * dat$gdpPercap
+
+  new &lt;- cbind(dat, gdp=gdp)
+  return(new)
+}</code></pre>
+<ul>
+<li>let’s save as a script so we can load our fuctions and source them.</li>
+<li>you can load in the functions into our R session by using the source function</li>
+</ul>
+<pre class="r"><code>source(&quot;functions/functions.R&quot;)</code></pre>
+<p>Lot going on in this function:</p>
+<ul>
+<li>function subsets the data by country and/or year if their args aren’t empty.</li>
+<li>then calculates the gdp on the resulting subsetted data</li>
+<li>adds the result to a new column</li>
+</ul>
+<pre class="r"><code>head(calcGDP(gapminder, year=2007))</code></pre>
+<pre><code>##        country year      pop continent lifeExp  gdpPercap          gdp
+## 12 Afghanistan 2007 31889923      Asia  43.828   974.5803  31079291949
+## 24     Albania 2007  3600523    Europe  76.423  5937.0295  21376411360
+## 36     Algeria 2007 33333216    Africa  72.301  6223.3675 207444851958
+## 48      Angola 2007 12420476    Africa  42.731  4797.2313  59583895818
+## 60   Argentina 2007 40301927  Americas  75.320 12779.3796 515033625357
+## 72   Australia 2007 20434176   Oceania  81.235 34435.3674 703658358894</code></pre>
+<pre class="r"><code>calcGDP(gapminder, country=&quot;Australia&quot;)</code></pre>
+<pre><code>##      country year      pop continent lifeExp gdpPercap          gdp
+## 61 Australia 1952  8691212   Oceania  69.120  10039.60  87256254102
+## 62 Australia 1957  9712569   Oceania  70.330  10949.65 106349227169
+## 63 Australia 1962 10794968   Oceania  70.930  12217.23 131884573002
+## 64 Australia 1967 11872264   Oceania  71.100  14526.12 172457986742
+## 65 Australia 1972 13177000   Oceania  71.930  16788.63 221223770658
+## 66 Australia 1977 14074100   Oceania  73.490  18334.20 258037329175
+## 67 Australia 1982 15184200   Oceania  74.740  19477.01 295742804309
+## 68 Australia 1987 16257249   Oceania  76.320  21888.89 355853119294
+## 69 Australia 1992 17481977   Oceania  77.560  23424.77 409511234952
+## 70 Australia 1997 18565243   Oceania  78.830  26997.94 501223252921
+## 71 Australia 2002 19546792   Oceania  80.370  30687.75 599847158654
+## 72 Australia 2007 20434176   Oceania  81.235  34435.37 703658358894</code></pre>
+<pre class="r"><code>calcGDP(gapminder, year=2007, country=&quot;Australia&quot;)</code></pre>
+<pre><code>##      country year      pop continent lifeExp gdpPercap          gdp
+## 72 Australia 2007 20434176   Oceania  81.235  34435.37 703658358894</code></pre>
+<ul>
+<li>walk through body of function</li>
+<li>added two arguments country and year with default value of null</li>
+<li>we check to see if they are not null with the if operator</li>
+<li>and then subset the rows</li>
+<li>scoping</li>
+<li>calculate gdp and creeate a new data frame with column to return</li>
+</ul>
+<div id="lab-cover" class="section level3">
+<h3>Lab cover</h3>
+</div>
 </div>
 
 
