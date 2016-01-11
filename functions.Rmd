@@ -8,7 +8,8 @@ output: html_document
 Goal: To be to define a function that takes arguments and return a value from a function. Overall, 
 be able to explain why we should divide programs into small, single-purpose functions.
 
-Data: https://goo.gl/8Zi1hv
+Project setup & data instructions: http://ucsdlib.github.io/win2016-gps-intro-R/project-data.html  
+Data direct download: https://goo.gl/8Zi1hv
 
 **Last week**
 
