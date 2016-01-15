@@ -21,9 +21,8 @@ NOTE: Because Monday (Jan 18th) falls on MLK day, we will meet on Wed.(Jan 20th)
 +-----------+---------------------------------+-----------------------------------------------------------+
 | Jan. 13   | Lab: Functions & GGPLOT2        | - Challenges & assignment                                 |
 +-----------+---------------------------------+-----------------------------------------------------------+
-| Jan. 20   | Data preparation & cleaning     | - Data frame manipulation: dplyr                          |
-|           |                                 | - Split-apply-combine pattern: plyr                       | 
-|           |                                 | - Data frame mainpulation:  tidyr                         | 
+| Jan. 20   | Data preparation & cleaning     | - [Data frame manipulation: dplyr](http://ucsdlib.github.io/r-novice-gapminder/13-dplyr.html) |
+|           |                                 | - [Data frame mainpulation: tidyr](http://ucsdlib.github.io/r-novice-gapminder/14-tidyr.html)  | 
 +-----------+---------------------------------+-----------------------------------------------------------+
 | Jan. 22   | Lab: Data prep & cleaning       | - Wrap-up                                                 |
 |           |                                 | - Challenges & assignment                                 |

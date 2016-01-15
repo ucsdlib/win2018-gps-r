@@ -25,7 +25,7 @@ GOALS: Students should be able to use ggplot2 to generate publication quality gr
 
 ```{r lifeExp-vs-gdpPercap-scatter, message=FALSE}
 library(ggplot2)
-gapminder <- read.csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv", header = T)
+gapminder <- read.csv("https://goo.gl/BtBnPg", header = T)
 ggplot(data = gapminder, aes(x = lifeExp, y = gdpPercap)) +
   geom_point()
 ```
