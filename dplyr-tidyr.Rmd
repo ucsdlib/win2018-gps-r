@@ -14,8 +14,9 @@ GOAL: To be able to use the 6 data frame manipulation in dplyr.
 ### Load data
 
 ```{r}
-gapminder <- read.csv("https://goo.gl/BtBnPg", header = T)
-
+#setwd('~/workshops/r-novice-gapminder/')
+#gapminder <- read.csv("https://goo.gl/BtBnPg", header = T)
+gapminder <- read.csv("data/gapminder-FiveYearData.csv", header = T)
 ```
 
 ```{r}
@@ -49,7 +50,7 @@ mean(gapminder[gapminder$continent == "Asia", "gdpPercap"])
 
 Install this package: 
 
-```{r}
+```{r results='hide'}
 #install.packages('dplyr')
 library(dplyr)
 ```
@@ -64,10 +65,14 @@ year_country_gdp <- select(gapminder, year, country, gdpPercap)
 
 Show fig 1  in lesson. 
 
+![](fig/13-dplyr-fig1.png)
+
 Using pipes (`%>%`), forward pipe left to right, obviates need to include dataframe
 
 ```{r}
 year_country_gdp <- gapminder %>% select(year,country,gdpPercap)
+#base-r way
+year_country_gdp_br <- gapminder[, c("year", "country", "gdpPercap")]
 ```
 
 If we now wanted to move forward with the above, but only with European countries, we can combine select and filter
