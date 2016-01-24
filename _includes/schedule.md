@@ -26,5 +26,6 @@ NOTE: Because Monday (Jan 18th) falls on MLK day, we will meet on Wed.(Jan 20th)
 |           |                                 | - [Data frame mainpulation: tidyr](http://ucsdlib.github.io/r-novice-gapminder/14-tidyr.html)  | 
 +-----------+---------------------------------+-----------------------------------------------------------+
 | Jan. 22   | Lab: Data prep & cleaning       | - Wrap-up                                                 |
-|           |                                 | - Challenges & assignment                                 |
+|           |                                 | - [In-class problems]() & assignment                      |
+|           |                                 | - [In-class problems solutions](http://goo.gl/k4dzAq)     |
 +-----------+---------------------------------+-----------------------------------------------------------+

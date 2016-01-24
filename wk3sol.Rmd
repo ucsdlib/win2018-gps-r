@@ -16,7 +16,7 @@ library(ggvis)
 ```
 ## 1.1 Data management with dplyr 
 
-### Read in the data 
+### 1. Read in the data 
 
 ```{r}
 gapminder <- read.csv("https://goo.gl/BtBnPg", header = T, stringsAsFactors = F)
@@ -28,7 +28,7 @@ gdp_byyear <- gapminder %>%
   summarize(mean_gdpPercap=mean(gdpPercap))
 ```
 
-### 1. What is the (absolute) difference between the average GDP per capita of Americas and Asia in year 2002?
+### 2. What is the (absolute) difference between the average GDP per capita of Americas and Asia in year 2002?
 ```{r}
 gdp_bycontinents_byyear <- gapminder %>%
   group_by(continent,year) %>%
@@ -58,7 +58,7 @@ abs(diff(gdp_byasiaamer_byyear$mean_gdpPercap))
 ```
 
 
-### 2. Which continent had the highest GDP per capita in year 2002?
+### 3. Which continent had the highest GDP per capita in year 2002?
 
 ```{r}
 yr2002ContiGdpPercap <- gdp_bycontinents_byyear %>% 
@@ -90,14 +90,14 @@ g2$continent[which.max(g2$mean_gdpPercap)] #we can pull out the which.min as wel
 #g2$continent[which.min(g2$mean_gdpPercap)] #this would work if we hadn't used the top_n() function
 ```
 
-### 3. Which continent had the lowest GDP per capita in year 2002?
+### 4. Which continent had the lowest GDP per capita in year 2002?
 
 ```{r}
 yr2002ContiGdpPercap$continent[which.min(yr2002ContiGdpPercap$mean_gdpPercap)]
 
 ```
 
-### 4. Which country had the highest GDP per capita in year 1967?
+### 5. Which country had the highest GDP per capita in year 1967?
 
 ```{r}
 gdp_bycountries_byyear <- gapminder %>%
@@ -129,7 +129,7 @@ gapminder %>%
  
 ```
 
-### 5. Which country had the highest life expectancy in year 2002 and what was the value of it?
+### 6. Which country had the highest life expectancy in year 2002 and what was the value of it?
 
 ```{r}
 lifeExp_bycountries_byyear <- gapminder %>%
@@ -158,14 +158,14 @@ yr2002CountLifeExp$lifeExp[which.max(yr2002CountLifeExp$lifeExp)]
 
 ```
 
-### 7 What does the distribution of the log of GDP per capita look like in year 1967? 
+### 7. What does the distribution of the log of GDP per capita look like in year 1967? 
 
 ```{r}
 hist(log(yr1967CountGdpPercap$gdpPercap), plot=T, main="Histogram of Each Country's log(GDP per capita in 1967)", xlab="log(GDP per capita in 1967)")
 
 ```
 
-### 8 what does the distribution of the life expectancy in year 2002 look like?
+### 8. What does the distribution of the life expectancy in year 2002 look like?
 
 ```{r}
 hist(yr2002CountLifeExp$lifeExp, plot=T, main="Histogram of Each Country's Life Expectancy in 2002", xlab="Life Expectancy in 2002")
@@ -180,7 +180,7 @@ lifeExp_bycountries_byyear %>%
   layer_histograms()
 ```
 
-### 9 Add a log(GDP per capita in 1967) column to the data frame that contains GDP per capita by countries in 1967.
+### 9. Add a log(GDP per capita in 1967) column to the data frame that contains GDP per capita by countries in 1967.
 
 ```{r}
 yr1967CountGdpPercapLog <- yr1967CountGdpPercap %>% 
@@ -189,7 +189,7 @@ yr1967CountGdpPercapLog <- yr1967CountGdpPercap %>%
 head(yr1967CountGdpPercapLog)
 ```
 
-### 10 Graph (scatter plot) x:Log(GDP per capita in 1967), y:Life Expectancy in 2002
+### 10. Graph (scatter plot) x:Log(GDP per capita in 1967), y:Life Expectancy in 2002
 
 ```{r}
 yr1967GDPyr2002LifeExp <- merge(yr1967CountGdpPercapLog, yr2002CountLifeExp, by.x="country", by.y="country")
