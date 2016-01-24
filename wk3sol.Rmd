@@ -5,7 +5,7 @@ date: "January 22, 2016"
 output: html_document
 ---
 
-```{r}
+```{r message=FALSE}
 library(ggplot2)
 library(dplyr)
 library(tidyr)
@@ -232,20 +232,34 @@ ggplot(data=LogGdp_bycontinents_byyear, aes(x=LogGdp_bycontinents_byyear$year, y
   ylab("Log GDP per capita per continent") +
   ggtitle("The trend of GDP per capita in each continent")
 ```
-
-### 1.2 Tidyr Load revenue.csv
 ```{r}
+# going from gapminder to 
+gapminder %>%
+  group_by(continent,year) %>%
+  summarize(mean_gdpPercap=mean(gdpPercap)) %>% 
+  ggvis(~year, ~log(mean_gdpPercap), stroke = ~continent) %>% 
+  layer_lines()
+```
+
+### 1.2 Tidyr - Wide to long and back again
+```{r}
+#Exercise 1. Load the revenue.csv le into your R project.
 revenue <- read.csv('https://raw.githubusercontent.com/ucsdlib/win2016-gps-intro-R/gh-pages/data/revenue.csv', header = T)
 ```
 
 
+
 ```{r}
+#Exercise 2. By using gather(), `gather' the quarter revenues into Quarter and Revenue.
 longRev <- revenue %>% gather(Quarter, Revenue, Qtr.1:Qtr.4)
 head(longRev)
+#Exercise 3. By using separate(), `separate' each of the Quarter strings into Time Interval and Interval ID
 separateRev <- longRev %>% separate(Quarter, c("Time_Interval", "Interval_ID"))
 head(separateRev)
+#Exercise 4. By using unite(), re-unite the Time Interval and Interval ID and re-create the original Quarter variable.
 uniteRev <- separateRev %>% unite(Quarter, Time_Interval, Interval_ID, sep=".")
 head(uniteRev)
+#Exercise 5. By using spread(), restore the original structure of the dataframe.
 wideRev <- uniteRev %>% spread(Quarter, Revenue)
 head(wideRev)
 
