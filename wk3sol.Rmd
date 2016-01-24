@@ -73,8 +73,8 @@ yr2002ContiGdpPercap$continent[which.max(yr2002ContiGdpPercap$mean_gdpPercap)]
 
 * Another approach without the intermediary subsetted data frames. 
 * When trying to create a ranking, you can use dplyr's `arrange` function, but it will behave oddly on grouped data. We need to ungroup to get arrange to work right. Try commenting the `ungroup()` line to see how it changes.
-* We use top_n() to return top row, so we get a 1 row ordered data frame
-* Can do which.max() outside of %>>% stanza 
+* We use `top_n()` to return top row, so we get a 1 row ordered data frame
+* Can do `which.max()` outside of `%>>%` stanza 
 
 ```{r}
 g2 <- gapminder %>%
@@ -117,7 +117,7 @@ yr1967CountGdpPercap$gdpPercap[which.max(yr1967CountGdpPercap$gdpPercap)]
 
 ```
 
-* Another example of going from gapminder (not saving as a new data frame) to the subsetted data frame to the one row contaning the answer. You could save this as a df and then access use my_dataframe[1,1] to get the answer.
+* Another example of going from gapminder (not saving as a new data frame) to the subsetted data frame to the one row contaning the answer. You could save this as a df and then access use `my_dataframe[1,1]` to get the answer.
 
 ```{r}
 gapminder %>%
@@ -249,7 +249,7 @@ ggplot(data=LogGdp_bycontinents_byyear, aes(x=LogGdp_bycontinents_byyear$year, y
   ggtitle("The trend of GDP per capita in each continent")
 ```
 
-* Below, we use **ggvis** instead of ggplot2 to create a line graph of year by a log of GDP per continent. 
+* Below, we use **ggvis** instead of **ggplot2** to create a line graph of year by a log of GDP per continent. 
 * **ggvis** is under active development and doesn't have all the features of ggplot2. For instance, there isn'ta plot title (ggtitle)
 * Notice how we just use the `log()` function inside the `ggvis` function instead of using `mutate()` -- we could also do this transformation on the fly in ggplot2 as well. The choice of transforming in the graphing function or creating a new variable in the data frame depends on if you need that variable to persist for longer than a plot. If not, do the tranformation on the fly in the graph.  
 
