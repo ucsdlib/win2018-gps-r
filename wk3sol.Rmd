@@ -1,0 +1,301 @@
+---
+title: "Solutions to Week 3 In-class Problems"
+author: "Hyeonsu Kang & Tim Dennis"
+date: "January 22, 2016"
+output: 
+  html_document:
+    toc: true
+    theme: united
+---
+
+```{r message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(ggvis)
+```
+## 1.1 Data management with dplyr 
+
+### 1. Read in the data 
+
+```{r}
+gapminder <- read.csv("https://goo.gl/BtBnPg", header = T, stringsAsFactors = F)
+```
+
+```{r include=FALSE}
+gdp_byyear <- gapminder %>%
+  group_by(year) %>%
+  summarize(mean_gdpPercap=mean(gdpPercap))
+```
+
+### 2. What is the (absolute) difference between the average GDP per capita of Americas and Asia in year 2002?
+```{r}
+gdp_bycontinents_byyear <- gapminder %>%
+  group_by(continent,year) %>%
+  summarize(mean_gdpPercap=mean(gdpPercap))
+
+```
+```{r}
+yr2002GdpPercapConti <- gdp_bycontinents_byyear %>% 
+  filter(year==2002)
+yr2002AsiaGdpPercap <- yr2002GdpPercapConti %>% 
+  filter(continent=="Asia")
+yr2002AmericasGdpPercap <- yr2002GdpPercapConti %>% 
+  filter(continent=="Americas")
+abs(yr2002AsiaGdpPercap$mean_gdpPercap - yr2002AmericasGdpPercap$mean_gdpPercap)  
+
+```
+
+* Another approach to do above, but using `dplyr` for all but the final step. 
+
+```{r}
+gdp_byasiaamer_byyear <- gapminder %>%
+  group_by(continent,year) %>%
+  filter(continent=="Asia" | continent == "Americas", year == "2002") %>%
+  summarize(mean_gdpPercap=mean(gdpPercap))
+
+abs(diff(gdp_byasiaamer_byyear$mean_gdpPercap))
+```
+
+
+### 3. Which continent had the highest GDP per capita in year 2002?
+
+```{r}
+yr2002ContiGdpPercap <- gdp_bycontinents_byyear %>% 
+  filter(year==2002) 
+```
+
+```{r}
+yr2002ContiGdpPercap$continent[which.max(yr2002ContiGdpPercap$mean_gdpPercap)]
+
+```
+
+
+* Another approach without the intermediary subsetted data frames. 
+* When trying to create a ranking, you can use dplyr's `arrange` function, but it will behave oddly on grouped data. We need to ungroup to get arrange to work right. Try commenting the `ungroup()` line to see how it changes.
+* We use `top_n()` to return top row, so we get a 1 row ordered data frame
+* Can do `which.max()` outside of `%>>%` stanza 
+
+```{r}
+g2 <- gapminder %>%
+  group_by(continent,year) %>%
+  filter(year==2002) %>% 
+  summarize(mean_gdpPercap=mean(gdpPercap)) %>% 
+  ungroup() %>% 
+  arrange(desc(mean_gdpPercap)) %>% #orders the data frame in descending order using arrange & desc
+  top_n(1) 
+
+head(g2) #top_n grabs the top n rows. 
+g2$continent[which.max(g2$mean_gdpPercap)] #we can pull out the which.min as well
+#g2$continent[which.min(g2$mean_gdpPercap)] #this would work if we hadn't used the top_n() function
+```
+
+### 4. Which continent had the lowest GDP per capita in year 2002?
+
+```{r}
+yr2002ContiGdpPercap$continent[which.min(yr2002ContiGdpPercap$mean_gdpPercap)]
+
+```
+
+### 5. Which country had the highest GDP per capita in year 1967?
+
+```{r}
+gdp_bycountries_byyear <- gapminder %>%
+  group_by(country, year) %>%
+  summarize(gdpPercap)
+```
+
+
+```{r}
+yr1967CountGdpPercap <- gdp_bycountries_byyear %>% 
+  filter(year==1967)
+
+yr1967CountGdpPercap$country[which.max(yr1967CountGdpPercap$gdpPercap)]
+
+yr1967CountGdpPercap$gdpPercap[which.max(yr1967CountGdpPercap$gdpPercap)]
+
+
+```
+
+* Another example of going from gapminder (not saving as a new data frame) to the subsetted data frame to the one row contaning the answer. You could save this as a df and then access use `my_dataframe[1,1]` to get the answer.
+
+```{r}
+gapminder %>%
+  group_by(country, year) %>%
+  summarize(gdpPercap) %>% 
+  filter(year == 1967) %>% 
+  ungroup() %>% 
+  slice(which.max(gdpPercap))
+ 
+```
+
+### 6. Which country had the highest life expectancy in year 2002 and what was the value of it?
+
+```{r}
+lifeExp_bycountries_byyear <- gapminder %>%
+  group_by(country, year) %>%
+  summarize(lifeExp)
+```
+
+  
+```{r}
+yr2002CountLifeExp <- lifeExp_bycountries_byyear %>% 
+  filter(year==2002)
+```
+
+
+* the name of the country
+
+```{r}
+yr2002CountLifeExp$country[which.max(yr2002CountLifeExp$lifeExp)]
+
+```
+
+* the value of the life expectancy
+
+```{r}
+yr2002CountLifeExp$lifeExp[which.max(yr2002CountLifeExp$lifeExp)]
+
+```
+
+### 7. What does the distribution of the log of GDP per capita look like in year 1967? 
+
+```{r}
+hist(log(yr1967CountGdpPercap$gdpPercap), plot=T, main="Histogram of Each Country's log(GDP per capita in 1967)", xlab="log(GDP per capita in 1967)")
+
+```
+
+### 8. What does the distribution of the life expectancy in year 2002 look like?
+
+```{r}
+hist(yr2002CountLifeExp$lifeExp, plot=T, main="Histogram of Each Country's Life Expectancy in 2002", xlab="Life Expectancy in 2002")
+```
+
+* another way using a viz package that works with %>%
+
+```{r}
+lifeExp_bycountries_byyear %>% 
+  filter(year==2002) %>%
+  ggvis(~lifeExp) %>%
+  layer_histograms()
+```
+
+### 9. Add a log(GDP per capita in 1967) column to the data frame that contains GDP per capita by countries in 1967.
+
+```{r}
+yr1967CountGdpPercapLog <- yr1967CountGdpPercap %>% 
+  mutate(logGDP=log(gdpPercap))
+
+head(yr1967CountGdpPercapLog)
+```
+
+### 10. Graph (scatter plot) x:Log(GDP per capita in 1967), y:Life Expectancy in 2002
+
+```{r}
+yr1967GDPyr2002LifeExp <- merge(yr1967CountGdpPercapLog, yr2002CountLifeExp, by.x="country", by.y="country")
+head(yr1967GDPyr2002LifeExp)
+```
+
+```{r}
+ggplot(data=yr1967GDPyr2002LifeExp, aes(x=yr1967GDPyr2002LifeExp$logGDP, y=yr1967GDPyr2002LifeExp$lifeExp)) + 
+  geom_point() + 
+  xlab("log(GDP per capita 1967)") + 
+  ylab("Life Expectancy in 2002") + 
+  ggtitle("Log GDP per capita (1967) - Life Expectancy (2002) Graph") + 
+  geom_text(aes(label=yr1967GDPyr2002LifeExp$country), size=3)
+```
+
+### 11. Graph a scatter plot with an x axis of \log(GDP per capita per continent in 1967)", and a y axis of \Life expectancy per continent in 1967".
+
+```{r}
+lifeExp_bycontinents_byyear <- gapminder %>%
+  group_by(continent,year) %>%
+  summarize(mean_lifeExp=mean(lifeExp))
+```
+
+```{r}
+yr1967ContiGdpPercap <- gdp_bycontinents_byyear %>% 
+  filter(year==1967) 
+yr1967ContiLifeExp <- lifeExp_bycontinents_byyear %>% 
+  filter(year==1967)
+
+```
+
+```{r}
+
+yr1967ContiLogGdpPercap <- yr1967ContiGdpPercap %>% 
+  mutate(logGDP=log(mean_gdpPercap))
+
+```
+
+```{r}
+yr1967GDPyr1967LifeExp <- merge(yr1967ContiLogGdpPercap, yr1967ContiLifeExp, by.x="continent", by.y="continent")
+ggplot(data=yr1967GDPyr1967LifeExp, aes(x=yr1967GDPyr1967LifeExp$logGDP, y=yr1967GDPyr1967LifeExp$mean_lifeExp)) + geom_point() + 
+  xlab("log(GDP per capita per continent 1967") + 
+  ylab("Life Expectancy per continent in 1967") + 
+  ggtitle("Log GDP per capita and Life Expectancy per continent (1967)")
+
+```
+
+### 12. Graph (line plot) x: year, y: Log(GDP per capita per continent)
+
+```{r}
+LogGdp_bycontinents_byyear <- gdp_bycontinents_byyear %>%
+  mutate(logGDP=log(mean_gdpPercap))
+ggplot(data=LogGdp_bycontinents_byyear, aes(x=LogGdp_bycontinents_byyear$year, y=LogGdp_bycontinents_byyear$logGDP, color=continent)) + 
+  geom_line() +
+  xlab("Year") +
+  ylab("Log GDP per capita per continent") +
+  ggtitle("The trend of GDP per capita in each continent")
+```
+
+* Below, we use **ggvis** instead of **ggplot2** to create a line graph of year by a log of GDP per continent. 
+* **ggvis** is under active development and doesn't have all the features of ggplot2. For instance, there isn'ta plot title (ggtitle)
+* Notice how we just use the `log()` function inside the `ggvis` function instead of using `mutate()` -- we could also do this transformation on the fly in ggplot2 as well. The choice of transforming in the graphing function or creating a new variable in the data frame depends on if you need that variable to persist for longer than a plot. If not, do the tranformation on the fly in the graph.  
+
+```{r}
+# going from gapminder to 
+gapminder %>%
+  group_by(continent,year) %>%
+  summarize(mean_gdpPercap=mean(gdpPercap)) %>% 
+  ggvis(~year, ~log(mean_gdpPercap), stroke = ~continent) %>% 
+  layer_lines() %>% 
+  add_axis("x", title = "Year", format='####') %>%
+  add_axis("y", title = "Log GDP per capita per continent")
+```
+
+## 1.2 Tidyr - Wide to long and back again
+
+### 1. Load the revenue.csv le into your R project.
+
+```{r}
+revenue <- read.csv('https://raw.githubusercontent.com/ucsdlib/win2016-gps-intro-R/gh-pages/data/revenue.csv', header = T)
+```
+
+### 2. By using gather(), `gather' the quarter revenues into Quarter and Revenue.
+```{r}
+longRev <- revenue %>% gather(Quarter, Revenue, Qtr.1:Qtr.4)
+head(longRev)
+```
+
+
+### 3. By using separate(), `separate' each of the Quarter strings into Time Interval and Interval ID
+
+```{r}
+separateRev <- longRev %>% separate(Quarter, c("Time_Interval", "Interval_ID"))
+head(separateRev)
+```
+
+### 4. By using unite(), re-unite the Time Interval and Interval ID and re-create the original Quarter variable.
+
+```{r}
+uniteRev <- separateRev %>% unite(Quarter, Time_Interval, Interval_ID, sep=".")
+head(uniteRev)
+```
+
+###5. By using spread(), restore the original structure of the dataframe.
+
+```{r}
+wideRev <- uniteRev %>% spread(Quarter, Revenue)
+head(wideRev)
+```

@@ -33,7 +33,7 @@ assert("is not labeled year", "year" == w2a1$labels$x[1])
 assert("number rows in data is not 1704", 1704 == nrow(w2a1$data))
 ## Invisible NULL if all expressions returned TRUE, otherwise an error is signalled and the user-provided message is emitted.
 #if false, would throw error (not executed here b/c would stop rmarkdown build)
-#assert(""number rows in data is 1704", 1705 == nrow(w2a1$data))
+assert("number rows in data is 1704", 1705 == nrow(w2a1$data))
 
 ```
 
@@ -44,7 +44,7 @@ Test using testthat package.
 #expect_that(w2a1, is_a("lm"))
 #Error: w2a1 inherits from gg, ggplot not lm
 
-expect_that(w2a1, is_a('ggplot'))
+expect_that(w2a1, is_a('lm'))
 
 expect_that("year", equals(w2a1$labels$x[1]))
 
@@ -52,4 +52,3 @@ expect_that(str(w2a1$facet), prints_text("List of 1"))
 
 
 ```
-

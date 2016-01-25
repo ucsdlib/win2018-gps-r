@@ -8,7 +8,7 @@ output: html_document
 source("tools/chunk-options.R")
 opts_chunk$set(fig.path = "fig/08-plot-ggplot2-")
 # Silently load in the data so the rest of the lesson works
-gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
+#gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
 ```
 ```{r}
 #install.packages('ggplot2')
@@ -25,6 +25,7 @@ GOALS: Students should be able to use ggplot2 to generate publication quality gr
 
 ```{r lifeExp-vs-gdpPercap-scatter, message=FALSE}
 library(ggplot2)
+gapminder <- read.csv("https://goo.gl/BtBnPg", header = T)
 ggplot(data = gapminder, aes(x = lifeExp, y = gdpPercap)) +
   geom_point()
 ```
