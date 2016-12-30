@@ -6,15 +6,15 @@ address: "Room 3202, 9500 Gilman Drive, #0519, La Jolla, CA"    # street address
 country: "us"    # country (lowercase two-letter ISO code such as "fr" - see https://en.wikipedia.org/wiki/ISO_3166-1)
 language: "en"   # language (lowercase two-letter ISO code such as "fr" - see https://en.wikipedia.org/wiki/ISO_639-1)
 latlng: "32.885125,-117.241173"     # fractional latitude and longitude (e.g., "41.7901128,-87.6007318"; you can use http://www.latlong.net/)
-humandate: "Jan 4-20, 2016"  # human-readable date (e.g., "Feb 17-18, 2020")
-humantime: "12:30 pm -1:50 pm"  # human-readable time (e.g., "9:00 am - 4:30 pm")
-startdate: "2015-01-04"  # use YYYY-MM-DD format like "2015-01-01"
-enddate: "2015-01-20"  # use YYYY-MM-DD format like" 2015-01-02"
-days: "Mon/Wed"
-instructor: ["Tim Dennis", "Hyeonsu Kang"] # list of names like ["Kay McNulty", "Betty Jennings", "Betty Snyder"]
-helper: ["Reid Otsuji"]     # list of names like ["Marlyn Wescoff", "Fran Bilas", "Ruth Lichterman"]
+humandate: "Jan 9- Jan 23, 2016"  # human-readable date (e.g., "Feb 17-18, 2020")
+humantime: "6:30 pm -9:20 pm"  # human-readable time (e.g., "9:00 am - 4:30 pm")
+startdate: "2016-01-09"  # use YYYY-MM-DD format like "2015-01-01"
+enddate: "2015-01-23"  # use YYYY-MM-DD format like" 2015-01-02"
+days: "Monday"
+instructor: ["Tim Dennis", "Reid Otsuji"] # list of names like ["Kay McNulty", "Betty Jennings", "Betty Snyder"]
+helper: ["Youngsun Kwon"]     # list of names like ["Marlyn Wescoff", "Fran Bilas", "Ruth Lichterman"]
 contact: "timdennis@ucsd.edu"    # contact email address for workshop organizer, such as "grace@hopper.org"
-etherpad: "https://public.etherpad-mozilla.org/p/gps-intro-r" # optional (insert the URL for your Etherpad if you're using one)
+etherpad: "http://pad.software-carpentry.org/2017-gps-r" # optional (insert the URL for your Etherpad if you're using one)
 eventbrite:       # optional (insert the alphanumeric key for Eventbrite registration, e.g., "1234567890AB")
 ---
 <!--
@@ -97,7 +97,7 @@ eventbrite:       # optional (insert the alphanumeric key for Eventbrite registr
 <p id="requirements">
   <strong>Requirements:</strong> Participants must bring a laptop with
   a few specific software packages installed (listed
-  <a href="#setup">below</a>). 
+  <a href="#setup">below</a>).
 </p>
 
 <!--
@@ -120,7 +120,7 @@ eventbrite:       # optional (insert the alphanumeric key for Eventbrite registr
 
 <p id="certificate">
 <strong>Assessment</strong>:
-A certificate of proficiency will be given to students who: 
+A certificate of proficiency will be given to students who:
 </p>
 
 <ul>
@@ -131,23 +131,25 @@ A certificate of proficiency will be given to students who:
 
 <p id="help">
 {% if site.lib_appt %}
-  <strong>Need help?</strong>:  Email <a href='mailto:{{page.contact}}'>{{page.contact}}</a> or 
+  <strong>Need help?</strong>:  Email <a href='mailto:{{page.contact}}'>{{page.contact}}</a> or
   <a href="{{site.lib_appt}}">schedule an appointment</a>
 {% endif %}
 </p>
 <p id = "data">
-<strong>Data:</strong> We will be using the 5 year <a href="http://www.gapminder.org/data/">gapminder data</a>. You can go ahead and set up a RStudio project and download the data following these <a href="project-data.html">instructions</a>. The CSV can be downloaded from <a href="https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv">here</a>. 
+<strong>Data:</strong> We will be using the 5 year <a href="http://www.gapminder.org/data/">gapminder data</a>. You can go ahead and set up a RStudio project and download the data following these <a href="project-data.html">instructions</a>. The CSV can be downloaded from <a href="https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv">here</a>.
 
 </p>
 <strong>Lecture notes:</strong>
+<!---
 <ul>
 <li><a href="http://ucsdlib.github.io/win2016-gps-intro-R/r-intro.html">Intro to R - Day 1</a></li>
 <li><a href="http://ucsdlib.github.io/win2016-gps-intro-R/data-frames_subsetting.html">Data Frames & Subsetting</a></li>
 <li><a href="http://ucsdlib.github.io/win2016-gps-intro-R/functions.html">Functions</a></li>
 <li><a href="http://ucsdlib.github.io/win2016-gps-intro-R/ggplot.html">Ggplot2</a></li>
 </ul>
+-->
 <p>
-<strong>Credits:</strong>  The course materials are adpated from the Software Carpentry <a href="http://software-carpentry.org/lessons/">lessons</a>. Many thanks to the authors of those lessons. 
+<strong>Credits:</strong>  The course materials are adpated from the Software Carpentry <a href="http://software-carpentry.org/lessons/">lessons</a>. Many thanks to the authors of those lessons.
 </p>
 <hr/>
 <!--
@@ -159,8 +161,12 @@ A certificate of proficiency will be given to students who:
 -->
 <h2 id="schedule">Schedule</h2>
 
-{% include schedule.html %}
+{% capture schedule %}{% include schedule.md %}{% endcapture %}
+{{ schedule  | markdownify }}
 
+<!--
+{% include schedule.html %}
+-->
 
 <!--
   ETHERPAD
@@ -234,7 +240,7 @@ A certificate of proficiency will be given to students who:
     </ul>
   </div>
   -->
-  
+
   <div class="col-md-6">
     <h3 id="syllabus-r">Programming in R</h3>
     <ul>
@@ -243,7 +249,7 @@ A certificate of proficiency will be given to students who:
       <li>Creating and using functions</li>
       <li>Loops and conditionals</li>
       <li>Using R from the command line</li>
-      <li><a href="{{site.swc_githubio}}r-novice-gapminder/reference.html">Reference...</a></li>
+      <li><a href="http://swcarpentry.github.io/r-novice-gapminder/reference/">Reference...</a></li>
     </ul>
   </div>
   <!--
