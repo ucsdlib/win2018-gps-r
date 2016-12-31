@@ -1,8 +1,8 @@
 #--------------------------------------------------------------------------------
 # Values for this workshop - EDIT THIS SECTION.
 #--------------------------------------------------------------------------------
-workshop_repo   : "https://github.com/ucsdlib/win2017-gps-intro-R"
-workshop_site   : "http://ucsdlib.github.io/win2017-gps-intro-R"
+workshop_repo   : "https://github.com/ucsdlib/win2017-gps-intro-r"
+workshop_site   : "http://ucsdlib.github.io/win2017-gps-intro-r"
 #--------------------------------------------------------------------------------
 # Standard Software Carpentry settings - should not need to be modified.
 #--------------------------------------------------------------------------------
