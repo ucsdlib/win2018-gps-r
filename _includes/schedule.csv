@@ -1,0 +1,3 @@
+**Date**,**Class**,**Topics**
+Jan. 9,"Setup, Intro, & Data Structures","Intro to course-- Intro to R & Rstudio-- Data structures: vectors, matricies, factors-- Data frames & reading dataSubsetting R objects"Jan. 18,Functions & Plotting,"Creating functionsPlotting with GGPLOT2Supplemental LessonsVectorization& writing dataControl flow(conditional statements, loops)"
+Jan. 23,Data preparation & cleaning,Data frame manipulation: dplyrData frame mainpulation: tidyr
