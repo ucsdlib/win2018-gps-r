@@ -24,6 +24,7 @@ swc_post_survey : "https://www.surveymonkey.com/r/swc_post_workshop_v1?workshop_
 lib_site        : "http://libraries.ucsd.edu"
 lib_rdcp        : "http://libraries.ucsd.edu/rdcp"
 lib_data_svcs   : "http://ucsd.libguides.com/data-services"
+lib_data_lab    : "http://ucsd.libguides.com/data-gis-lab"
 gps_site        : "http://gps.ucsd.edu"
 lib_contact     : "timdennis@ucsd.edu"
 lib_appt        : "https://calendly.com/tim-dennis/"

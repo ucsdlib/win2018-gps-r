@@ -135,23 +135,17 @@ A certificate of proficiency will be given to the student who:
     <li> Tim Dennis: Email <a href='mailto:{{page.contact}}'>{{page.contact}}</a> or
   <a href="{{site.lib_appt}}">schedule an appointment</a></li>
 {% endif %}
-  <li>Youngsun Kwon <a href='mailto:yok005@ucsd.edu'>yok005@ucsd.edu</a>, Office Hours: Tues. 11-1pm [Data/GIS Lab](http://ucsd.libguides.com/data-gis-lab) in 2West Geisel</li>
-  <li><a href="http://ucsd.libguides.com/data-gis-lab">Data/GIS Lab has R specialists</a></li>
+  <li>Youngsun Kwon <a href='mailto:yok005@ucsd.edu'>yok005@ucsd.edu</a>, Office Hours: Tues. 11-1pm <a href="{{site.lib_data_lab}}">Library Data/GIS Lab</a> in 2 West Geisel</li>
+  <li><a href="{{site.lib_data_lab}}">Library Data/GIS Lab</a> has R specialists</li>
 </ul>
 </p>
 <p id = "data">
 <strong>Data:</strong> We will be using the 5 year <a href="http://www.gapminder.org/data/">gapminder data</a>. You can go ahead and set up a RStudio project and download the data following these <a href="project-data.html">instructions</a>. The CSV can be downloaded from <a href="https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv">here</a>.
 
 </p>
-<strong>Lecture notes:</strong>
-<!---
-<ul>
-<li><a href="http://ucsdlib.github.io/win2016-gps-intro-R/r-intro.html">Intro to R - Day 1</a></li>
-<li><a href="http://ucsdlib.github.io/win2016-gps-intro-R/data-frames_subsetting.html">Data Frames & Subsetting</a></li>
-<li><a href="http://ucsdlib.github.io/win2016-gps-intro-R/functions.html">Functions</a></li>
-<li><a href="http://ucsdlib.github.io/win2016-gps-intro-R/ggplot.html">Ggplot2</a></li>
-</ul>
--->
+<strong>Lecture notes & command histories:</strong>
+<% capture notes %}{% include notes.md %}{% endcapture %}
+{{ notes  | markdownify }}
 <p>
 <strong>Credits:</strong>  The course materials are adpated from the Software Carpentry <a href="http://software-carpentry.org/lessons/">lessons</a>. Many thanks to the authors of those lessons.
 </p>
