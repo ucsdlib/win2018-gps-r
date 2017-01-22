@@ -5,3 +5,6 @@
 * Notes: [Data Types](https://ucsdlib.github.io/gps-skills-2017/intro-r/04-data-types.html), Commands:[R Script](https://raw.githubusercontent.com/ucsdlib/gps-skills-2017/master/intro-r/intro-r-data-str.R)
 * [Exploring Data Frames](https://ucsdlib.github.io/gps-skills-2017/intro-r/05-explor-dfs.html)
 
+**Day 2 - Jan. 18, 2017**
+
+* Lecture notes: [Plotting with GGPLOT2](http://ucsdlib.github.io/workshops/notebooks/ggplot2/ggplot.html)
