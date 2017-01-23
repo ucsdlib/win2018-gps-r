@@ -7,4 +7,4 @@
 
 **Day 2 - Jan. 18, 2017**
 
-* Lecture notes: [Plotting with GGPLOT2](http://ucsdlib.github.io/workshops/notebooks/ggplot2/ggplot.html)
+* Lecture notes: [Plotting with GGPLOT2](http://ucsdlib.github.io/workshops/notebooks/ggplot2/ggplot.html), Commands:[R Script](https://raw.githubusercontent.com/ucsdlib/gps-skills-2017/master/intro-r/ggplot_script.R)
