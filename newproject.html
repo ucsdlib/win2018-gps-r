@@ -1,0 +1,38 @@
+<h2 id="create-new-poroject-in-rstudio">Create New Poroject in RStudio</h2>
+<ol style="list-style-type: decimal">
+<li>Open RStudio and go to <code>File&gt;New Project</code> in the top menu</li>
+<li>Select <code>New Directory</code></li>
+<li>Choose <code>Empty Project</code></li>
+<li>Type Directory Name, e.g., gps-r or what you want, and navigate where you want this to live (Desktop is usually easy to find)</li>
+<li>Select 'Create project' and now download the data</li>
+</ol>
+<h2 id="download-gapminder-data-into-the-project">Download gapminder data into the project</h2>
+<p>We need a data folder inside our project.</p>
+<ol style="list-style-type: decimal">
+<li>Once you create a project above you should be in the project folder and the following will work</li>
+<li>In RStudio far lower right pane, select 'Files'</li>
+<li>Click 'New Folder' and name 'data'</li>
+<li>In the console, run (without the &gt;) &gt; download.file('https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv', 'data/gapminder-FiveYearData.csv')</li>
+<li>This will download and place a gapminderFiveYearData.csv inside the data folder</li>
+</ol>
+<h2 id="with-screenshots">With Screenshots</h2>
+<ol style="list-style-type: decimal">
+<li>Open RStudio and go to <code>File&gt;New Project&gt;New Project</code> in the top menu</li>
+</ol>
+<div class="figure">
+<img src="assets/file-newproject.png" title="Create new project" alt="Create New project" />
+<p class="caption">Create New project</p>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li>Select <code>New Directory &gt; Empty Project</code>:</li>
+</ol>
+<p><a href="assets/create-proj-name-dir.png"><img src="assets/create-new-project-dir.png" title="Create new project dir" alt="Name New project" /></a></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Create a new data folder in project folder:</li>
+</ol>
+<p><a href="assets/create-data-folder-big.png"><img src="assets/create-data-new-folder-small.png" title="Create data folder" alt="New data folder" /></a></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Download gapminder data into data folder:</li>
+</ol>
+<p>Run <code>download.file('https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv', 'data/gapminder-FiveYearData.csv')</code> from console</p>
+<p><a href="assets/create-data-folder-big.png"><img src="assets/create-data-new-folder-small.png" title="Create data folder" alt="Download data" /></a></p>
