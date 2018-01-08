@@ -1,7 +1,7 @@
 ---
-title: "Setting up a Project and Obtaining Data"
-author: "Tim Dennis"
-date: "January 4, 2016"
+title: "Setting up a RStudio Project and Obtaining Data"
+author: "Reid Otsuji adapted from Tim Dennis"
+date: "January 6, 2018"
 output: html_document
 ---
 
