@@ -1,0 +1,70 @@
+---
+title: "R lesson challenges - Week 1"
+author: "Reid Otsuji"
+date: "1/8/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Intro
+
+### Challenge 1 (5 mins)
+<https://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/#challenge-1>
+
+
+### Challenge 2 & 3 (5 mins)
+<https://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/#challenge-2>
+
+<https://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/#challenge-3>
+
+### Challenge 4
+<https://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/#challenge-4>
+
+### Challenge 5
+<https://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/#challenge-5>
+
+
+## Project Management Challenge (might completed during setup)
+### Challenge 1
+<https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/#challenge-1>
+
+
+
+## Data Structures Lesson
+
+### Challenge 1
+<http://swcarpentry.github.io/r-novice-gapminder/04-data-structures-part1#challenge-1>
+
+### Challenge 2
+<http://swcarpentry.github.io/r-novice-gapminder/04-data-structures-part1#challenge-2>
+
+### Challenge 3
+<http://swcarpentry.github.io/r-novice-gapminder/04-data-structures-part1#challenge-3>
+
+### Challenge 4
+<http://swcarpentry.github.io/r-novice-gapminder/04-data-structures-part1#challenge-4>
+
+
+### Challenge 5 data structures
+<http://swcarpentry.github.io/r-novice-gapminder/04-data-structures-part1#challenge-5>
+
+
+## Data.Frames Lesson
+
+### Challenge 1 data structures
+<http://swcarpentry.github.io/r-novice-gapminder/05-data-structures-part2/#challenge-1>
+
+
+### Challenge 2
+<http://swcarpentry.github.io/r-novice-gapminder/05-data-structures-part2/#challenge-2>
+
+
+### Challege 3
+<http://swcarpentry.github.io/r-novice-gapminder/05-data-structures-part2/#challenge-3>
+
+
+
+
