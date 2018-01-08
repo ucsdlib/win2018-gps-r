@@ -27,7 +27,7 @@ lib_data_svcs   : "http://ucsd.libguides.com/data-services"
 lib_data_lab    : "http://ucsd.libguides.com/data-gis-lab"
 gps_site        : "http://gps.ucsd.edu"
 lib_contact     : "rotsuji@ucsd.edu"
-# lib_appt        : "https://calendly.com/tim-dennis/"
+lib_appt        : ""
 
 #--------------------------------------------------------------------------------
 # Settings for Jekyll - should not need to be modified.
