@@ -1,0 +1,399 @@
+---
+title: "Intro to R"
+author: "Reid Otsuji adapted from Tim Dennis"
+date: "January 5, 2018"
+output: html_document
+---
+## Course intro (5- 10 mins)
+* Introductions: instructor and TA - Library services
+* Using TritonEd resources
+* Syllabus overview
+* assignements posted weds or thurs - sure before next course
+* quizes on Tritoned
+* format will be the same for all 3 sections
+
+
+
+**shoot for 1hr**
+
+## SETUP (5 min)
+
+* We're going to learn R for data analysis!
+* real goal not to teach R indepth, but teach basic concepts that you can use in any language
+* we’re going to teach you some of the fundamentals of the R language as well as some best practices for organizing code for scientific projects that will make your life easier
+
+* why R and RStudio?
+	* we have to use something
+	* it's free, well-documented, and runs on most machines
+	* active community, especially among scientists
+	* lots of code already written (and available for reuse!) for many different types of analyses
+	
+## SETUP DATA
+* download data and put in gps-r workshop folder on your desktop: https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv
+
+
+
+## INTRO TO RSTUDIO (10 min)
+
+* RStudio is a free, handy interface to work with R (some folks may have used the regular R console already)
+	* R works the same, regardless of whether you're using the R console, R GUI, or RStudio
+	
+##### BASIC LAYOUT: RStudio
+* When you open RStudio, you will be greeted by three panels:
+    * The interactive R console (entire left)
+    * Workspace/History (tabbed in upper right)
+    * files/Plots/Packages/Help (tabbed in lower right)
+    
+* Walk through each panel on screen
+
+##### KEYBOARD SHORTCUTS - Running segments of your code
+* Shortcuts: 
+`Tools>Keyboard shortcut help`
+
+Alt+- inserts `<-` at cursor
+Control+Shift+m inserts `%>%` at cursor (we'll get into thisfor day 2)
+Control+Enter = Run current line/selection
+ctrl+1 = Move cursor to source
+ctrl+2 = Move cursor to console
+
+## Intro to R (15)
+Much of your time in R will be spent in the R interactive console. 
+
+This is where you will run all of your code, and can be a useful environment to try out ideas before adding them to an R script file.
+
+## R as calculator in the script window - simple use 
+
+	* much time spent in console working out code 
+	* console `>` with blinking cursor, much like command line
+	* "read, evaluate, print, loop" REPL - many languages adopt this paradigm (bash, stata, python)
+	* R tries to execute them, and then returns a result
+
+```{r}
+1 + 100
+```
+
+
+* if you hit return and R shows a `+` instead of ~>`, waiting for you to comlete command, ESC or control+c will escape
+
+Using R as a calculator:
+R uses same order of opterations to lowest precedence:
+
+1. Parentheses: `( )`
+2. Exponents: `^` or `**`
+3. Divide: `/`
+4. Multiply: `*`
+5. Add: +
+6. Subtract: -
+
+`3+5*2` v. `(3+5) * 2`
+
+```{r}
+3+5*2
+```
+
+vs. 
+Use parentheses to group operations in order to force the order of evaluation if it differs from the default, or to make clear what you intend.
+
+```{r}
+(3+5) * 2
+```
+
+```{r}
+(3 + (5 * (2 ^ 2))) # hard to read
+3 + 5 * 2 ^ 2       # clear, if you remember the rules
+3 + 5 * (2 ^ 2)     # if you forget some rules, this might help
+```
+
+* really small or large numbers get scientific notation
+* `2/10000` #2e-04 shorthand for 10^XX 
+
+```{r}
+2/10000
+```
+
+* So 2e-4 is shorthand for 2 * 10^(-4).
+
+* You can write numbers in scientific notation too:
+```{r}
+5e3 # Note the lack of minus here
+
+```
+
+* `5e3` #notice the lack of minus here
+
+## Math functions - many built in functions
+* R has many built in mathematical functions.
+* To call a function, we simply type its name, followed by open and closing parentheses.
+
+* Anything we type inside the parentheses is called the function’s arguments
+
+
+```{r}
+sin(1) #trig functions
+```
+```{r}
+log(1) # natural log
+```
+
+
+```{r}
+log10(10) #base-10 log
+```
+
+```{r}
+exp(0.5) # e^(1/2)
+```
+
+##### Commenting
+* notice the use of the `#` after, any idea what this does? this doesn't get evaluated b/c it's a comment, use this to document or leave notes for yourself, e.g. #TODO fix code
+
+* Dont worry about remembering functions, use google 
+* use RSudio's **autocompletion** feature if you can remember beginning of function
+
+* Typing `?` before a function brings up help page in Rstudio help panel
+* we'll look at help later on
+
+## Comparing things
+
+* we can do comparisons in R
+
+```{r}
+1 == 1 # equality (note two equals signs, read as "is equal to")
+
+1 != 2  # inequality (read as "is not equal to")
+1 <  2  # less than
+1 <= 1  # less than or equal to
+1 > 0  # greater than
+1 >= -9 # greater than or equal to
+# Tip: dont' use == to compare numbers unless integers, computers represent decimals with a certain degree of precision
+# check out ?all.equal for comparing things involving doubles
+
+0.1+0.05==0.15
+all.equal(0.1+0.05, 0.15)
+```
+
+* Tip: dont' use == to compare numbers unless integers, computers represent decimals with a certain degree of precision
+* ?all.equal
+* `0.1+0.05==0.15`
+* `all.equal(0.1+0.05, 0.15)`
+
+## Variable & assignments
+
+* Store values in vars using assignment operator `<-`, like `x <- 1/40`
+```{r}
+x <- 1/40
+```
+* Notice that assignment does not print a value.
+
+* Look in Environment tab in Rstudio
+```{r}
+x
+```
+* decimal approximation of this fraction called a floating point number.
+
+* our var can be used in place of a number in calculations `log(x)`
+```{r}
+log(x)
+```
+
+* Variables can be reassigned `x<-100`
+
+```{r}
+x <- 100
+```
+
+```{r}
+x
+```
+`x` used to contain the value 0.025 and and now it has the value 100.
+
+
+* Assignement values can contain variable being assigned to:
+```{r}
+x <- x + 1 #notice how RStudio updates its description of x on the top right tab
+y <- x * 2
+```
+
+```{r}
+x
+y
+```
+
+* `x <- x + 1 #notice how RStudio updates its description of x on the top right tab`
+
+* right hand side of assignment can be any valid R expression & is evaluated prior assigment
+
+* Variable names can contain letters, numbers, underscores and periods. 
+* They cannot start with a number nor contain spaces at all.
+* Can use = for assignment but less common among R users
+
+* be consisten with operator usage, `<-` is more common and recommended
+
+
+Challenge 1 (5 mins)
+
+
+## Vectorization
+
+* R is vectorized, meaning that variables and functions can have vectors as values
+
+```{r}
+1:5
+```
+
+```{r}
+2^(1:5)
+```
+
+```{r}
+x <- 1:5
+2^x
+```
+
+Challenge 2 & 3 (5 mins)
+
+
+## Managing your enviorment
+
+* There are useful commands to use to interact with the R session 
+* `ls()` lists all varialbles and fucntions stored in the R golbal environment
+```{r}
+ls()
+```
+
+* typing `ls` along will print out code for that function (or any R function)
+```{r}
+ls
+```
+* when using `ls` parenthasis are importnat to tell R to call the function `ls`
+
+* Remove objects use `rm(x)`
+```{r}
+rm(x)
+```
+* You can use `rm` to delete objects you no longer need
+
+* If you have a lot of objects and want to delete all, use `rm(list=ls())`
+```{r}
+rm(list=ls())
+```
+
+* In this case we are using `ls()` function inside another function that takes a list argument, so we are listing all objects and then deleting them with `rm()`
+
+* arguments need the =, not <- `rm(list <- ls())` causes errors
+
+run once:
+`rm(list <- ls())`
+
+Challenge 4
+
+
+## Installing and Using R packages
+
+* We can write our own packages or obtain package written by others.
+* Over 7,000 packages on CRAN (the comprehensive R archive network)
+* In RStudio console run: 
+
+```{r eval=FALSE}
+installed.packages() #list packages
+
+install.packages("packagename1", "packagename2") #install one or many packages
+
+update.pakcages() updating packages
+
+remove.packages("packagename")
+
+library(packagename) #make package available 
+
+```
+
+
+Challenge 5
+
+
+#### Project management with RStudio (10 min)
+
+The scientific process is naturally incremental, and many projects start life as random notes, some code, then a manuscript, and eventually everything is a bit mixed together.
+
+A good project layout will ultimately make your life easier:
+
+It will help ensure the integrity of your data;
+It makes it simpler to share your code with someone else (a lab-mate, collaborator, or supervisor);
+It allows you to easily upload your code with your manuscript submission;
+It makes it easier to pick the project back up after a break.
+
+* we'll look a litle more at Data Management near the end of quarter. 
+
+* most ppl tend to organize projects like so
+* <http://swcarpentry.github.io/r-novice-gapminder/fig/bad_layout.png>
+
+> ## Creating a project in RStudio
+> We’re going to create a new project in RStudio:
+>
+> 1. Click the “File” menu button, then “New Project”.
+> 2. Click “New Directory”.
+> 3. Click “Empty Project”.
+> 4. Type in the name of the directory to store your project, e.g. “swc_ucla”.
+> 5. If available, select the checkbox for “Create a git repository." (We'll come back to this tomorrow) 
+> 6. Click the “Create Project” button.
+
+#### Best practices for project organization
+Although there is no “best” way to lay out a project, there are some general principles to adhere to that will make project management easier:
+
+* Treat data as read only
+This is probably the most important goal of setting up a project.
+
+Data is typically time consuming and/or expensive to collect.
+
+Working with them interactively (e.g., in Excel) where they can be modified means you are never sure of where the data came from, or how it has been modified since collection.
+
+It is therefore a good idea to treat your data as “read-only”.
+
+* Data Cleaning
+In many cases your data will be “dirty”: it will need significant preprocessing
+to get into a format R (or any other programming language) will find useful.
+
+This task is sometimes called “data munging”.
+
+it useful to store these scripts in a separate folder, and create a second “read-only” data folder to hold the “cleaned” data sets.
+
+* Treat generated output as disposable
+Anything generated by your scripts should be treated as disposable: it should all be able to be regenerated from your scripts.
+
+There are lots of different ways to manage this output. its useful to have an output folder with different sub-directories for each separate analysis. 
+
+This makes it easier later, as many of my analyses are exploratory and don’t end up being used in the final project, and some of the analyses get shared between projects.
+
+#### Good enough practices for scientific computing 
+https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf
+
+gives the following recommendations for project organization:
+
+* Put each project in its own directory, which is named after the project.
+* Put text documents associated with the project in the `doc` directory.
+* Put raw data and metadata in the `data` directory, and files generated during cleanup and analysis in a `results` directory.
+* Put source for the project’s scripts and programs in the `src` directory, and programs brought in from elsewhere or compiled locally in the `bin` directory.
+* Name all files to reflect their content or function.
+
+* mention `TIER Protocol` - covered later on in the Data Management section
+
+
+Challenge 1
+
+
+
+
+## Seeking help (5min)
+
+To be able to access R help files for functions and operators. 
+
+* R & every package provides help files for function. 
+* to search: `?function_name` or `help(function_name)` 
+* special operators:  `?"+"`
+* packages can also have "vignettes" -- tutorials 
+* use vignette() to see all
+* vignette('vignette_name')
+* `??function_name` will do fuzzy search for function help (if you don't know the exact name)
+* don't know where to begin to find a package you need, look at CRAN task views http://cran.at.r-project.org/web/views/ (cat based )
+
+** hope to be at 2:00pm**

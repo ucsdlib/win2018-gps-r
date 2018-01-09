@@ -1,6 +1,6 @@
 | **Date** | **Class**                      |   **Topics**                     |
 |----------|--------------------------------|----------------------------------|
-| Jan. 9   | Lecture                        | Intro to R & RStudio - Project Mgmt - Data structures - Data frames        |
+| Jan. 9   | Lecture                        | [Intro to R & RStudio](notes/01-intro-r-rstudio.Rmd) - Project Mgmt - Data structures - Data frames        |
 |          | Quiz & Assignment              |  Quiz 1 -- Assignment 1         |
 | Jan. 18  | Lecture                        | Plotting with GGPLOT2           |
 |          | Quiz & Assignment               | Quiz 2 - Assignment 2          |
