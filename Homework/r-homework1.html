@@ -313,25 +313,64 @@ $(document).ready(function () {
 <section id="due-117---by-start-of-class-630pm" class="level2">
 <h2>Due 1/17 - By Start of Class 6:30pm</h2>
 </section>
+<section id="instructions" class="level2">
+<h2>Instructions:</h2>
+<p>For this assignment you will be using a RMarkdown document. More info <a href="http://rmarkdown.rstudio.com/">here</a>. 1. Type your code in the grey <code>code chunk</code> area.<br />
+2. To run your code, click on the green triangle in the code chunk area.</p>
+</section>
 <section id="how-to-submit-your-homework" class="level2">
 <h2>How to submit your homework:</h2>
 <ol type="1">
-<li>Download the <a href="https://raw.githubusercontent.com/ucsdlib/win2018-gps-r/gh-pages/Homework/r-homework1.R">r-homework1.R</a> (save as from your browser) script and open in Rstudio</li>
-<li>Rename <code>r-homework1.R</code> to <code>yourlastname_sudentID_r-homework1.R</code> (save as in RStudio)</li>
+<li>Download the r-homework1.Rmd file in TritonEd and open in Rstudio.</li>
+<li>Rename <code>r-homework1.Rmd</code> to <code>yourlastname_sudentID_r-homework1.Rmd</code> (save as in RStudio)</li>
 <li>Type the answers in the uncommented lines (those without #) in the code chunks. Notice, for some lines, we have gotten you started with names of objects.</li>
-<li>Save the script file.</li>
-<li>Upload the script file to TritonEd (preferred) by 1/17 before 6:30pm. Or you can email your script directly to <a href="mailto:rotsuji@ucsd.edu">rotsuji@ucsd.edu</a>. NOTE: Please use your UCSD email address when sending an email.</li>
+<li>Save the Rmarkdown .Rmd file.</li>
+<li>Upload the .Rmd file to TritonEd (preferred) by 1/17 before 6:30pm. Or you can email your script directly to <a href="mailto:rotsuji@ucsd.edu">rotsuji@ucsd.edu</a>. NOTE: Please use your UCSD email address when sending an email.</li>
 </ol>
-<section id="exercise-1-making-vectors-5-points" class="level3">
-<h3>Exercise 1 : Making Vectors (5 points)</h3>
+<section id="exercise-1-making-vectors-1-2.5-points" class="level3">
+<h3>Exercise 1 : Making Vectors 1 (2.5 points)</h3>
+<ol type="a">
+<li>create a vector composed of numbers from 1 to 10 using a R command (hint: combine() c ()seq())</li>
+<li>coerce the type of the vector to be string</li>
+<li>Using a R command, find the first elements of the vector</li>
+<li>Using a R command, find the first 5 elements of the vector</li>
+<li>Using a R command, find the last element of the vector</li>
+<li>Using a R command, find the last 5 elements of the vector</li>
+<li>Using a R command, find the length of the vector</li>
+</ol>
+<pre class="r"><code># Write your code below the # comment:
+# a.
+
+
+
+# b.
+
+
+# c. 
+
+
+# d.
+
+
+# e. 
+
+
+
+# f.
+
+
+# g.  </code></pre>
+</section>
+<section id="exercise-2-making-vectors-2-5-points" class="level3">
+<h3>Exercise 2 : Making Vectors 2 (5 points)</h3>
 <p>Start by making a vector named ‘myvector’ with the numbers 1 through 26. Create another vector named, ‘myvectimestwo’ by multiply the vector by 2, and give the resulting vector names A through Z (hint: there is a built in vector called <code>LETTERS</code>)</p>
 <pre class="r"><code># Write code below:</code></pre>
 <hr />
 </section>
-<section id="exercise-2-seeking-help-5-points" class="level3">
-<h3>Exercise 2: Seeking Help (5 points)</h3>
+<section id="exercise-3-seeking-help-2.5-points" class="level3">
+<h3>Exercise 3: Seeking Help (2.5 points)</h3>
 <ol type="1">
-<li><p>Start by listing the preloaded datasets by typing <code>data()</code> in the console.</p></li>
+<li><p>Start by listing the preloaded datasets by typing <code>data()</code> in the console window.</p></li>
 <li><p>Find the <code>mtcars</code> data set. Write the command to find the <code>help</code> information about the mtcars dataset.</p></li>
 </ol>
 <pre class="r"><code># Write code below:</code></pre>
@@ -340,19 +379,19 @@ $(document).ready(function () {
 </ol>
 <hr />
 </section>
-<section id="exercise-3-factors-10-points" class="level3">
-<h3>Exercise 3: Factors (10 points)</h3>
+<section id="exercise-4-factors-10-points" class="level3">
+<h3>Exercise 4: Factors (10 points)</h3>
 <p>Load the small cats dataset we created in class (feline-data.csv). If you don’t have this data set, see the Data Structures lesson <a href="https://ucsdlib.github.io/win2018-gps-r/notes-edited/04-data-types.html" class="uri">https://ucsdlib.github.io/win2018-gps-r/notes-edited/04-data-types.html</a></p>
 <pre class="r"><code># load the data set
-cats &lt;- read.csv(file=&quot;feline-data.csv&quot;)</code></pre>
+cats &lt;- read.csv(file=&quot;feline-data.csv&quot;) # edit the path in the read.csv function to the data file on your computer.</code></pre>
 <p>Try using <code>?read.csv</code> to figure out how to keep text columns (e.g. coats) as character vectors instead of factors; then write a command or two to show that the factor in <code>cats</code> is actually a <code>character vector</code> when loaded in this way.</p>
 <pre class="r"><code># Complete these lines:
-cats &lt;- read.csv() 
+cats &lt;- read.csv()
 str()</code></pre>
 <hr />
 </section>
-<section id="exercise-4-data-types-and-structures-10-points" class="level3">
-<h3>Exercise 4: Data Types and Structures (10 Points)</h3>
+<section id="exercise-5-data-types-and-structures-10-points" class="level3">
+<h3>Exercise 5: Data Types and Structures (10 Points)</h3>
 <p>Create a list of length two containing a character vector for each of the sections in this part of the workshop:</p>
 <ul>
 <li>Data types</li>
@@ -365,8 +404,8 @@ dataStructures &lt;- c() #character vector
 answer &lt;- list() #list of length two</code></pre>
 <hr />
 </section>
-<section id="exercise-5-structure-10-points" class="level3">
-<h3>Exercise 5: Structure (10 points)</h3>
+<section id="exercise-6-structure-10-points" class="level3">
+<h3>Exercise 6: Structure (10 points)</h3>
 <ol type="1">
 <li><p>Use the function <code>data()</code> to display the list of Locate the builtin <code>iris</code> dataset.</p></li>
 <li><p>Write function used to investigate the structure of the dataset <code>iris</code>.</p></li>
@@ -379,8 +418,8 @@ answer &lt;- list() #list of length two</code></pre>
 <pre class="r"><code># Write code below:</code></pre>
 <hr />
 </section>
-<section id="exercise-6-matrix-10-points" class="level3">
-<h3>Exercise 6: Matrix (10 points)</h3>
+<section id="exercise-7-matrix-10-points" class="level3">
+<h3>Exercise 7: Matrix (10 points)</h3>
 <ol type="1">
 <li>Make a matrix called “mymatrix” containing the numbers 1:50, with 5 columns and 10 rows. Print the matrix out.</li>
 <li>Make the “mymatrix” matrix above fill by row, not by column (its default behaviour). Print out the matrix. (hint: read the <code>matrix</code> lesson section!)</li>

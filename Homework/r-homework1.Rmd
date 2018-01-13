@@ -14,16 +14,56 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ## Due 1/17 - By Start of Class 6:30pm
+## Instructions:
+For this assignment you will be using a RMarkdown document. More info [here](http://rmarkdown.rstudio.com/). 
+1. Type your code in the grey `code chunk` area.  
+2. To run your code, click on the green triangle in the code chunk area.
+
 ## How to submit your homework:
-1. Download the [r-homework1.R](https://raw.githubusercontent.com/ucsdlib/win2018-gps-r/gh-pages/Homework/r-homework1.R) (Save As from your browser) script and open in Rstudio
-2. Rename `r-homework1.R` to `yourlastname_sudentID_r-homework1.R` (save as in RStudio)
+1. Download the r-homework1.Rmd file in TritonEd and open in Rstudio.
+2. Rename `r-homework1.Rmd` to `yourlastname_sudentID_r-homework1.Rmd` (save as in RStudio)
 3. Type the answers in the uncommented lines (those without #) in the code chunks. Notice, for some lines, we have gotten you started with names of objects.
-4. Save the script file. 
-5. Upload the script file to TritonEd (preferred) by 1/17 before 6:30pm. Or you can email your script directly to rotsuji@ucsd.edu. NOTE: Please use your UCSD email address when sending an email.  
+4. Save the Rmarkdown .Rmd file. 
+5. Upload the .Rmd file to TritonEd (preferred) by 1/17 before 6:30pm. Or you can email your script directly to rotsuji@ucsd.edu. NOTE: Please use your UCSD email address when sending an email.  
 
 
-### Exercise 1 : Making Vectors (5 points)
+### Exercise 1 : Making Vectors 1 (2.5 points)
+a. create a vector composed of numbers from 1 to 10 using a R command  (hint: combine() c ()seq())
+b. coerce the type of the vector to be string
+c. Using a R command, find the first elements of the vector
+d. Using a R command, find the first 5 elements of the vector
+e. Using a R command, find the last element of the vector
+f. Using a R command, find the last 5 elements of the vector
+g. Using a R command, find the length of the vector
+```{r eval=FALSE}
+# Write your code below the # comment:
+# a.
 
+
+
+# b.
+
+
+# c. 
+
+
+# d.
+
+
+# e. 
+
+
+
+# f.
+
+
+# g.  
+
+
+
+```
+
+### Exercise 2 : Making Vectors 2 (5 points)
 Start by making a vector named 'myvector' with the numbers 1 through 26.
 Create another vector named, 'myvectimestwo' by multiply the vector by 2, and give the resulting vector names A through Z (hint: there is a built in vector called `LETTERS`)
 ```{r eval=FALSE}
@@ -35,8 +75,8 @@ Create another vector named, 'myvectimestwo' by multiply the vector by 2, and gi
 
 ---
 
-### Exercise 2: Seeking Help (5 points)
-1. Start by listing the preloaded datasets by typing `data()` in the console.
+### Exercise 3: Seeking Help (2.5 points)
+1. Start by listing the preloaded datasets by typing `data()` in the console window.
 
 2. Find the `mtcars` data set. Write the command to find the `help` information about the mtcars dataset.
 ```{r eval=FALSE}
@@ -53,24 +93,24 @@ Create another vector named, 'myvectimestwo' by multiply the vector by 2, and gi
 
 ---
 
-### Exercise 3: Factors (10 points)
+### Exercise 4: Factors (10 points)
 Load the small cats dataset we created in class (feline-data.csv).  If you don't have this data set, see the Data Structures lesson <https://ucsdlib.github.io/win2018-gps-r/notes-edited/04-data-types.html>
 ```{r eval=FALSE}
 # load the data set
-cats <- read.csv(file="feline-data.csv")
+cats <- read.csv(file="feline-data.csv") # edit the path in the read.csv function to the data file on your computer.
 ```
 
 Try using `?read.csv` to figure out how to keep text columns (e.g. coats) as character vectors instead of factors; then write a command or two to show that the factor in `cats` is actually a `character vector` when loaded in this way.
 
 ```{r eval=FALSE}
 # Complete these lines:
-cats <- read.csv() 
+cats <- read.csv()
 str()
 ```
 
 ---
 
-### Exercise 4: Data Types and Structures (10 Points)
+### Exercise 5: Data Types and Structures (10 Points)
 Create a list of length two containing a character vector for each of the sections in this part of the workshop:
 
 * Data types
@@ -89,7 +129,7 @@ answer <- list() #list of length two
 
 ---
 
-### Exercise 5: Structure (10 points)
+### Exercise 6: Structure (10 points)
 1. Use the function `data()` to display the list of Locate the builtin `iris` dataset. 
 
 2. Write function used to investigate the structure of the dataset `iris`.
@@ -120,7 +160,7 @@ answer <- list() #list of length two
 
 ---
 
-### Exercise 6: Matrix (10 points)
+### Exercise 7: Matrix (10 points)
 
 1. Make a matrix called "mymatrix" containing the numbers 1:50, with 5 columns and 10 rows. Print the matrix out.
 2. Make the "mymatrix" matrix above fill by row, not by column (its default behaviour). Print out the matrix.
