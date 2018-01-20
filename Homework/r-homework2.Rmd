@@ -111,26 +111,18 @@ Myplot <- ggplot()
 Using the gapminder data we used on Wed.’s class, create a density plot of GDP per capita, filled by continent
 that looks like the following:
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![Sample Density Plot](https://github.com/ucsdlib/win2018-gps-r/blob/gh-pages/Homework/plot1-filled.png "Sample Plot")
 
 
-
-
-```{r}
-ggplot(data = gapminder, aes(x = gdpPercap, fill=continent)) +
- geom_density(alpha=0.6) + facet_wrap( ~ year) + scale_x_log10()
-
-
-```
 NOTE: Transform the x axis using a log10 to better visualise the data spread. - Add a facet layer to panel the density plots by year.
  
-**Hint: Look up the `facet_wrap` and `scale_x_*` functions to help you accomplish this.**
+**Hint: Look up the `geom_density()`, `facet_wrap` and `scale_x_*` functions to help you accomplish this.**
 
 YOUR ANSWER:
 ```{r}
 # write your code here:
-ggplot()
-
+ggplot() +
+ geom_density() + facet_wrap( ) + scale_x_
 
 ```
 
