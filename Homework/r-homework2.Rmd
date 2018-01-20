@@ -1,4 +1,11 @@
-
+---
+title: "Homework 2 - R GGPLOT2"
+author: "Reid Otsuji & Tim Dennis"
+date: "1/19/2018"
+output: 
+  html_document: 
+    toc: yes
+---
 
 ## Due 1/24 - By Midnight
 
@@ -119,7 +126,7 @@ NOTE: Transform the x axis using a log10 to better visualise the data spread. - 
 **Hint: Look up the `geom_density()`, `facet_wrap` and `scale_x_*` functions to help you accomplish this.**
 
 YOUR ANSWER:
-```{r}
+```{r eval=FALSE}
 # write your code here:
 ggplot() +
  geom_density() + facet_wrap( ) + scale_x_
