@@ -1,0 +1,259 @@
+---
+title: "Functions"
+author: "Reid Otsuji adapted from Tim Dennis"
+date: "01/19/2018"
+output: html_document
+---
+
+Goal: To be to define a function that takes arguments and return a value from a function. Overall, 
+be able to explain why we should divide programs into small, single-purpose functions.
+
+
+##What is a function?
+
+Functions gather a sequence of operations into a whole, preserving it for ongoing use. Functions provide:
+
+* a name we can remember and invoke it by
+* relief from the need to remember the individual operations
+* a defined set of inputs and expected outputs
+* rich connections to the larger programming environment
+
+As the basic building block of most programming languages, user-defined functions constitute **programming** as much as any single abstraction can. If you have written a function, you are a computer programmer.
+
+## Creating a function 
+
+Open a R Script `File > New File > R Script`:
+
+```{r}
+my_sum <- function(a, b) {
+  the_sum <- a + b
+  return(the_sum)
+}
+```
+
+Using (calling) this function: 
+
+```{r}
+my_sum(10, 15)
+
+```
+
+Components of a function: 
+
+1. body 
+2. arguments
+3. environment
+
+```{r}
+body(my_sum)
+```
+```{r}
+formals(my_sum)
+```
+```{r}
+#args(my_sum) #for a more human readable version
+environment(my_sum)
+
+```
+** show environment window - read only functions view ** 
+
+Let's define a function that converts Fahrenheit to Kelvin.
+
+```{r}
+fahr_to_kelvin <- function(temp) {
+  kelvin <- ((temp - 32) * (5 / 9)) + 273.15
+  return(kelvin)
+}
+```
+
+* define function fahr_to_kelvin by assigning it to the output of `function`. 
+* List of arguments (e.g.temp) in the parenthese
+* The `body` of the funtion -- the operations that are executed -- are within the curly braces `{}`
+* indent statements 2 spaces inside body -- makes code easier to read
+
+**Calling the function** 
+
+* when we call the function, we pass its values to the arguments in the parentheses, so they can be used in the body (function)
+* we use a return statement to send back results of the call - `Return Statement` is a statement that causes a function to stop executing and return a value back to the call immediately.
+* return state optional in R - used for clarifying the last variable on the last line in the body.
+
+```{r}
+#freezing point of water
+fahr_to_kelvin(32)
+
+#boiling point of water
+fahr_to_kelvin(212)
+```
+
+
+### Challenge 1
+<http://swcarpentry.github.io/r-novice-gapminder/10-functions#challenge-1>
+
+Write a function called `kelvin_to_celsius` that takes a temperature in Kelvin and returns that temperature in Celsiu. Hint: To convert from Kelvin to Celsius you minus 273.15
+```{r}
+
+kelvin_to_celsius <- function(temp) {
+  celsius <- temp - 273.15
+  return(celsius)
+}
+
+```
+
+
+## Combining functions
+
+* The real power of functions comes when we mix, match and combine them into ever larger chunks to get what we need
+
+* As an example, let's define two functions that will convert temperature from Fahrenheit to Kelvin, and Kelvin to Celsius
+
+```{r}
+fahr_to_kelvin <- function(temp) {
+  kelvin <- ((temp - 32) * (5 / 9)) + 273.15
+  return(kelvin)
+}
+
+kelvin_to_celsius <- function(temp) {
+  celsius <- temp - 273.15
+  return(celsius)
+}
+```
+
+* to perform this calculation in one line of code, by “chaining” functions together, we can run:
+
+```{r}
+#freezing point of water in Celsius
+kelvin_to_celsius(fahr_to_kelvin(32.0))
+```
+
+
+
+### Challenge 2
+
+<http://swcarpentry.github.io/r-novice-gapminder/10-functions#challenge-2>
+
+## More on combining functions
+
+### Calculate GDP from GapMinder dataset
+Now, we’re going to define a function that calculates the Gross Domestic Product of a nation from the data available in our dataset:
+
+* make sure dataset is loaded as 'gapminder'
+
+```{r}
+gapminder <- read.csv(
+  file = 'data/gapminder-FiveYearData.csv',
+  header = T
+  
+)
+head(gapminder)
+```
+
+* type function example:
+
+```{r}
+# Takes a dataset and multiplies the population column
+# with the GDP per capita column.
+calcGDP <- function(dat){
+  gdp <- dat$pop * dat$gdpPercap
+  return(gdp)
+}
+
+```
+
+* defined calcGDP by using function.
+* List arguments `dat` in parentheses
+* The body of the function calculates `gdp`
+* `return statment` to stop executing and send back the result.
+
+```{r}
+
+calcGDP(head(gapminder))
+
+```
+* When we call the function `calcGDP()`, the values  we pass to it `head(gapminder)` are assigned to the arguments, which become variables inside the body of the function.
+
+
+* output not very informative. let's add country and year to our arguments to extract year and country
+
+```{r}
+# Takes a dataset and multiplies the population column
+# with the GDP per capita column.
+calcGDP <- function(dat, year=NULL, country=NULL) {
+  if(!is.null(year)) {
+    dat <- dat[dat$year %in% year, ]
+  }
+  if (!is.null(country)) {
+    dat <- dat[dat$country %in% country,]
+  }
+  gdp <- dat$pop * dat$gdpPercap
+
+  new <- cbind(dat, gdp=gdp)
+  return(new)
+}
+
+```
+
+* let's save as a script so we can load our fuctions and source them.
+
+* you can load in the functions into our R session by using the source function
+
+```{r eval=F}
+source("functions/functions.R")
+```
+
+Lot going on in this function: 
+
+* function now subsets the data by `country` and/or `year` if their arguments aren't empty. 
+* then calculates the `gdp` on the resulting subsetted data
+* function then adds the result to a new column to the subsetted data and returns result.
+
+* GDP for year
+```{r}
+head(calcGDP(gapminder, year=2007))
+
+```
+
+* GDP for specific country
+```{r}
+calcGDP(gapminder, country="Australia")
+
+```
+
+* or both year and country
+
+```{r}
+calcGDP(gapminder, year=2007, country="Australia")
+
+```
+
+* walk through body of function:
+* added two arguments `country` and `year` with default value of `null` meaning arguments will take on vaules unless specified
+```{r eval=FALSE}
+calcGDP <- function(dat, year=NULL, country=NULL) {
+```
+
+* we check to see if they are not null with the if operator 
+```{r eval=FALSE}
+  if(!is.null(year)) {
+    dat <- dat[dat$year %in% year, ]
+  }
+  if (!is.null(country)) {
+    dat <- dat[dat$country %in% country,]
+  }
+```
+* this was done so function can be more flexible for calculating GDP for whole data set, single year, single country, year and country (like examples)
+
+* and then subset the rows
+
+* scoping - any variables or functions created or modified in body of the function only exist for the lifetime of the functions execution. 
+* E.g. variables `dat`, `gdp`, and `new` only exist in the body of the function. 
+```{r eval=FALSE}
+gdp <- dat$pop * dat$gdpPercap
+  new <- cbind(dat, gdp=gdp)
+  return(new)
+}
+```
+
+* lastly, calculate gdp and creeate a new data frame with column to return (output) 
+
+*TIP: Important to test and document your functions for others to understand, how to use and to make sure the function does what you think it will do.
+
