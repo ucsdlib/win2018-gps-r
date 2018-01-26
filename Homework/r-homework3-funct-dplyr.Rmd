@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ### How to submit your homework:
-1. Download the [r-homework3.R](r-homework3.R) script and open in Rstudio
+1. Download the `r-homework3-funct-dplyr.Rmd` Rmarkdown file and open in Rstudio
 2. Rename `r-homework3-funct-dplyr.Rmd` to `yourlastname_sudentID_r-homework3.R`
 3. Type the answers in the code chunks. 
 4. Save the Rmarkdown file.
