@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
-## Due 1/29 - By Midnight 
+## Due 1/31 - By Midnight 
 
 
 ### How to submit your homework:
