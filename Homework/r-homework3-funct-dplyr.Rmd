@@ -1,0 +1,121 @@
+---
+title: "Homework 3 - functions and dplyr"
+author: "Tim Dennis & Reid Otsuji"
+date: "1/22/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+## Due 1/29 - By Midnight 
+
+
+### How to submit your homework:
+1. Download the [r-homework3.R](r-homework3.R) script and open in Rstudio
+2. Rename `r-homework3-funct-dplyr.Rmd` to `yourlastname_sudentID_r-homework3.R`
+3. Type the answers in the code chunks. 
+4. Save the Rmarkdown file.
+5. Upload the file to TritonEd for Assignment 3.  
+
+## load packages and assign gapminder data before you start the assignment:
+
+```{r eval=FALSE}
+# load packages dplry, tidyr, ggplot2
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+```
+
+```{r}
+# assign gapminder data
+gapminder <- read.csv('gapminder-FiveYearData.csv') #use your file path
+```
+
+## Questions: 
+
+##### 1. Write a function called `weighted_mean` that takes a `gapminder` data.frame as an argument and calculates a trimmed or weighted mean of life expectancy by weighing by population.  To do this you will assign the output of a function that calculates the the sum of `lifeExp` times `pop` divided by the `sum of pop` to a `weighted_mean` object.  Hint: Look up the `?sum` function. 
+
+```{r 1-example}
+weighted_mean <- function(gapminder) {
+  # 1. complete your weighted mean formula here:
+  weighted_mean = sum(  )
+  # 2. complete return
+  return()
+}
+
+```
+
+
+##### 2. Use dplyr to filter only rows with the continent of Africa.
+```{r eval=FALSE}
+# 1. compelte your code here:
+gapminder %>% 
+  filter( ) %>% 
+  
+# 2. verify filter using the head()
+ 
+
+
+```
+
+
+##### 3. Using the filtered `gapminder` data from the last question (only 'Africa' rows), with your `weighted_mean` function in question 1, what is the weighted mean of life expectancy of Africa? 
+
+```{r eval=FALSE}
+# 1. complete the code here (don't forget %>% )
+gapminder_ afr <- 
+  filter() 
+  weighted_mean()
+
+
+```
+
+
+##### 4. Create a `dplyr` piped sequence that: 
+    * Takes gapminder data and uses `group_by` to group by continent
+    * Creates a mean variable that conatins the mean of `lifeExp`
+    * Creates a `weighted_mean` variable that takes the sum of lifeExp times pop and divides that by the sum of pop -- the same formula you used in question 1 above. 
+    * Print out the resulting dataframe as `weight_mean_dp`
+    * The resulting data.frame should look like the below. 
+
+Note: You'll need to use the `summarize` function that `dplyr` gives you. 
+
+```{r eval=FALSE}
+# 1. write your code here:
+weighted_mean_dp <- gapminder %>%
+  summarize(
+    
+  )
+
+# 2. display output
+
+
+
+```
+
+
+
+##### 5. Using the built in `iris` dataset, `dplyr`, `tidyr`, and `ggplot2`, write a script that creates a plot comparing the petal and sepal widths and lengths values for each species of flower. 
+
+Hint: Start by using tidyr `gather()` function to create a `flowers_df` data frame gathering `Sepal.Length`, `Sepal.Width`, `Petal.Length`, and `Petal.Width` into the key values with `variable` being the ID variable and `value` being the measures. Hint: To express variables you want to `gather` you can use a function like `startsWith()` or use the exclusion operator `-` to tell gather that you want to include everthing but the excluded (e.g `-Species`).
+
+Next use `dplyr` and `ggplot` to create a bar plot comparing the species and values with the geom properties `stat = "identity"` and `position = "dodge"`.
+
+```{r eval = FALSE}
+# complete code here:
+flowers_df <- gather()
+flowers_df %>% 
+  ggplot() 
+
+
+
+```
+
+
+![Plot Sample](https://ucsdlib.github.io/win2018-gps-r/Homework/iris-plot-example.png)
+
+
+
